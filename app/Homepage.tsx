@@ -13,7 +13,6 @@ const Homepage = () => {
   console.log(categoryData);
   return (
     <div>
-      <Navbar></Navbar>
       <div className="relative">
         <Image
           src={banner}

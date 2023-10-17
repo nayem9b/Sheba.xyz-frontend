@@ -4,15 +4,19 @@ import ShebaTable from "@/components/ui/ShebaTable";
 import { useAllUsersQuery } from "@/redux/api/userApi";
 import { Button, message } from "antd";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import {
   DeleteOutlined,
   EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
+import { useOrganizationList } from "@clerk/nextjs";
 import dayjs from "dayjs";
 
 const AllUsers = () => {
+  const router = useRouter();
+  const { organizationList, isLoaded, setActive } = useOrganizationList();
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
@@ -21,6 +25,25 @@ const AllUsers = () => {
   const { data: allUsers, isLoading } = useAllUsersQuery();
   console.log(allUsers?.data);
   const meta = allUsers?.meta;
+
+  useEffect(() => {
+    if (isLoaded) {
+      // Find the admin organization from the loaded organization list
+
+      const adminOrganization = organizationList.find(
+        (org) => org.membership.role === "admin"
+      );
+
+      // If the user is not an admin, redirect to the homepage
+      if (!adminOrganization || adminOrganization.membership.role !== "admin") {
+        router.push("/");
+        message.success("welcome"); // Replace '/' with the homepage URL
+      } else {
+        // If the user is an admin, no need to wait for the organization list; render the admin page directly
+        message.success("welcome");
+      }
+    }
+  }, [isLoaded, organizationList, router]);
 
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....");
