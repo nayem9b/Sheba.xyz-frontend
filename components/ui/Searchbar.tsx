@@ -1,6 +1,6 @@
 import { AudioOutlined } from "@ant-design/icons";
 import React from "react";
-import { Input, Space } from "antd";
+import { Input, Select, Space } from "antd";
 import type { SearchProps } from "../Search";
 
 const { Search } = Input;
@@ -17,28 +17,41 @@ const suffix = (
 const onSearch: SearchProps["onSearch"] = (value: any, _e: any, info: any) =>
   console.log(value);
 
-
-  
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`);
+};
 
 const App: React.FC = () => (
-  <Space direction="vertical">
-    <Search
-      placeholder="input search text"
-      style={{
-        width: "486px",
-        height: "60px",
-        paddingBottom: "10px",
-        paddingLeft: "20px",
-        paddingRight: "20px",
-        paddingTop: "10px",
-        position: "absolute",
-        bottom: "300px",
-        left: 0,
-      }}
-      onSearch={onSearch}
-      enterButton
+  <div>
+    <Space direction="vertical">
+      <Search
+        placeholder="input search text"
+        style={{
+          width: "486px",
+          height: "60px",
+          paddingBottom: "10px",
+          paddingLeft: "20px",
+          paddingRight: "20px",
+          paddingTop: "10px",
+          position: "absolute",
+          bottom: "300px",
+          left: 0,
+        }}
+        onSearch={onSearch}
+        enterButton
+      />
+    </Space>
+    <Select
+      defaultValue="Filter"
+      style={{ width: 120 }}
+      onChange={handleChange}
+      options={[
+        { value: "name", label: "Name" },
+        { value: "location", label: "Location" },
+        { value: "category", label: "Category" },
+      ]}
     />
-  </Space>
+  </div>
 );
 
 export default App;

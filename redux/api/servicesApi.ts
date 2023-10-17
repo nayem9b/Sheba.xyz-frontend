@@ -13,13 +13,14 @@ export const servicesApi: any = baseApi.injectEndpoints({
     }),
 
     services: build.query({
-      query: () => ({
+      query: (arg: Record<string, any>) => ({
         url: `/services`,
         method: "GET",
+        params: arg,
       }),
       providesTags: [tagTypes.service],
     }),
-    
+
     singleServices: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/services/${id}`,
