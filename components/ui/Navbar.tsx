@@ -15,7 +15,7 @@ const Navbar = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const { session } = useSession();
   const userRole = checkUserRole(session);
-
+  console.log(userRole);
   return (
     <header className="text-gray-600 body-font bg-white shadow">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">

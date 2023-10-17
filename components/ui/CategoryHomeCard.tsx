@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const CategoryHomeCard = () => {
+const CategoryHomeCard = ({ category }: any) => {
   return (
     <div>
       <Link
@@ -16,7 +16,7 @@ const CategoryHomeCard = () => {
         />
 
         <div className="mt-2 text-center text-black font-semibold">
-          <p className="font-medium mx-auto ">123 Wallaby Avenue, Park Road</p>
+          <p className="font-medium mx-auto ">{category?.title}</p>
         </div>
       </Link>
     </div>

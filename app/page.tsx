@@ -53,14 +53,16 @@ export default function Home() {
   return (
     <>
       <Homepage />
+      <h1>All Categories</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
         {categoryData?.data?.map((category: any) => (
-          <CategoryHomeCard key={category.name} />
+          <CategoryHomeCard key={category.name} category={category} />
         ))}
       </div>
+      <h1>All Services</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
-        {services?.map((category: any) => (
-          <ServiceHomeCard key={category.name} category={category} />
+        {services?.map((service: any) => (
+          <ServiceHomeCard key={service.name} service={service} />
         ))}
       </div>
     </>
