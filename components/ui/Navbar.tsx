@@ -16,14 +16,14 @@ const Navbar = () => {
         <div className="px-4 mx-auto sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex-shrink-0">
-              <a href="#" title="" className="flex">
+              <Link href="/" title="" className="flex">
                 <img
                   className="w-auto h-8"
                   src="https://s3.ap-south-1.amazonaws.com/cdn-shebaxyz/sheba_xyz/images/sheba_logo_blue.png"
                   alt=""
                   width={300}
                 />
-              </a>
+              </Link>
             </div>
 
             <button
