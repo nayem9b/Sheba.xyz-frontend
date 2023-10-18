@@ -1,7 +1,7 @@
 import { AudioOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Button, Input, Select, Space } from "antd";
-import type { SearchProps } from "../Search";
+
 import { useServicesQuery } from "@/redux/api/servicesApi";
 
 const { Search } = Input;
@@ -21,7 +21,7 @@ const SearchPage = () => {
   const [category, setCategory] = useState();
   const [selectedField, setSelectedField] = useState<string>();
   const { data: allServices } = useServicesQuery();
-  const onSearch: SearchProps["onSearch"] = (value: any, _e: any, info: any) =>
+  const onSearch: any["onSearch"] = (value: any, _e: any, info: any) =>
     console.log(value);
 
   const handleChange = (value: string) => {

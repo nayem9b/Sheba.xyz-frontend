@@ -1,6 +1,5 @@
 "use client";
 
-//@ts-ignore
 import React, { useState } from "react";
 import { Button, Select, Space, message } from "antd";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
@@ -25,7 +24,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void;
 };
 
-const AddService = ({ name, price, details, updateFields }: UserFormProps) => {
+const AddService = () => {
   const [deleteService] = useDeleteServiceMutation();
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
@@ -123,9 +122,9 @@ const AddService = ({ name, price, details, updateFields }: UserFormProps) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
-    const price = form.price.value;
-    const details = form.details.value;
+    const name = form?.name.value;
+    const price = form?.price.value;
+    const details = form?.details.value;
 
     const image = form.image.files[0];
     const formData = new FormData();
