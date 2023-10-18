@@ -22,7 +22,6 @@ const Homepage = () => {
           className="object-cover"
         ></Image>
         <Search></Search>
-        <FeedbackForm />
       </div>
     </div>
   );

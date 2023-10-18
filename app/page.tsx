@@ -8,6 +8,12 @@ import CategoryHomeCard from "@/components/ui/CategoryHomeCard";
 import ServiceHomeCard from "@/components/ui/ServiceHomeCard";
 import { useEffect, useState } from "react";
 import { useAddUserMutation } from "@/redux/api/userApi";
+import CompanyPeople from "@/components/ui/CompanyPeople";
+import Testimonial from "@/components/ui/Testimonial";
+import News from "@/components/ui/News";
+import Partners from "@/components/ui/Partners";
+import FeedbackForm from "@/components/ui/FeedbackForm";
+import CallToAction from "@/components/ui/CallToAction";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -65,6 +71,12 @@ export default function Home() {
           <ServiceHomeCard key={service.name} service={service} />
         ))}
       </div>
+      <Partners />
+      <CompanyPeople />
+      <Testimonial />
+      <News />
+      <FeedbackForm />
+      <CallToAction />
     </>
   );
 }
