@@ -89,14 +89,14 @@ const Navbar = () => {
                 Resources{" "}
               </a>
 
-              <a
-                href="#"
+              <Link
+                href="/allcontents"
                 title=""
                 className="text-base text-black transition-all duration-200 hover:text-opacity-80"
               >
                 {" "}
-                Pricing{" "}
-              </a>
+                Blogs{" "}
+              </Link>
             </div>
             {userRole === "admin" && (
               <Link
