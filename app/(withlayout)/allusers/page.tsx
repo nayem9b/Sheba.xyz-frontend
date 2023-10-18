@@ -88,7 +88,7 @@ const AllUsers = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/academic/department/edit/${data?.id}`}>
+            <Link href={`/allusers/edit/${data?.id}`}>
               <Button
                 style={{
                   margin: "0px 5px",
