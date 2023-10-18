@@ -41,9 +41,10 @@ const AddService = ({ name, price, details, updateFields }: UserFormProps) => {
     try {
       console.log("Hello");
       const res = await deleteService(id);
-      if (res) {
+      console.log(res);
+      if (res?.data?.statusCode === 200) {
         message.success("Service Deleted successfully");
-      } else {
+      } else if (res?.error?.status === "PARSING_ERROR") {
         message.error("Service is being used by user. Delete Prohibited");
       }
     } catch (err: any) {
@@ -95,7 +96,7 @@ const AddService = ({ name, price, details, updateFields }: UserFormProps) => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/academic/department/edit/${data?.id}`}>
+            <Link href={`/addservice/edit/${data?.id}`}>
               <Button
                 style={{
                   margin: "0px 5px",

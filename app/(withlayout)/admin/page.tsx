@@ -19,10 +19,9 @@ const AdminDashboardPage = () => {
       // If the user is not an admin, redirect to the homepage
       if (!adminOrganization || adminOrganization.membership.role !== "admin") {
         router.push("/");
-        message.success("welcome"); // Replace '/' with the homepage URL
+        // Replace '/' with the homepage URL
       } else {
         // If the user is an admin, no need to wait for the organization list; render the admin page directly
-        message.success("welcome");
       }
     }
   }, [isLoaded, organizationList, router]);

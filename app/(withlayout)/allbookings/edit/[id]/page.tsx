@@ -13,12 +13,14 @@ import {
   useUpdateBookingMutation,
 } from "@/redux/api/bookingApi";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type IDProps = {
   params: any;
 };
 
 const EditBookingPage = ({ params }: IDProps) => {
+  const router = useRouter();
   const [bookingData, setBookingData] = useState<any>();
   const [status, setStatus] = useState<any>();
   const [date, setDate] = useState<string>();
@@ -71,6 +73,7 @@ const EditBookingPage = ({ params }: IDProps) => {
         .then((data) => {
           console.log(data);
           message.success("Updated user booking");
+          router.push("/allbookings");
         });
 
       message.success("user booking updated successfully");
@@ -86,62 +89,62 @@ const EditBookingPage = ({ params }: IDProps) => {
   };
 
   return (
-    <div>
-      <div className="justify-center text-center">
-        <h1>Edit booking details of </h1>
-        <h1>
-          {bookingData?.data?.name} {bookingData?.data?.email}
-        </h1>
-        <h1>{bookingData?.data?.contactNo}</h1>
-      </div>
-      <div className="justify-center text-center">
-        <Image width={200} src={bookingData?.data?.service?.image} />
-        <h1>Service Name : {bookingData?.data?.service?.name}</h1>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex justify-center">
-          <div className="grid grid-rows-3 w-3/12 ">
-            <div className="flex justify-evenly">
-              <label>Date</label>
-              <DatePicker
-                onChange={onDateChange}
-                defaultValue={bookingData?.data?.date}
-              />
-            </div>
-            <div className="flex justify-evenly mt-10">
-              <label>Time</label>
-              <TimePicker
-                use12Hours
-                format="h:mm:ss A"
-                onChange={onChange}
-                defaultValue={dayjs("12:25:15", "HH:mm:ss")}
-              />
-            </div>
-            <div className="flex justify-evenly mt-10">
-              <label>Status</label>
-              <Select
-                defaultValue="pending"
-                style={{ width: 120 }}
-                onChange={handleChange}
-                options={[
-                  { value: "pending", label: "Pending" },
-                  { value: "accepted", label: "Accept" },
-                  { value: "rejected", label: "Reject" },
-                  { value: "delivered", label: "Delivered" },
-                ]}
-              />
-            </div>
-            <div className="relative h-32 w-32 ">
-              <div className="absolute inset-y-0 right-0 w-16 ">
-                {" "}
-                <Button type="primary" htmlType="submit" className="w-16 flex ">
-                  Update
-                </Button>
+    <div className="flex justify-center">
+      <div className="">
+        <div className="">
+          <Image width={200} src={bookingData?.data?.service?.image} />
+          <h1>Service Name : {bookingData?.data?.service?.name}</h1>
+        </div>
+        <div className="">
+          <h1 className=" text-blue-500">Edit booking details of </h1>
+          <p className="text-lg">User Name: {bookingData?.data?.name}</p>
+          <p className="text-lg">Email : {bookingData?.data?.email}</p>
+          <p className="text-lg">Contact No : {bookingData?.data?.contactNo}</p>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="flex ">
+            <div className="grid grid-rows-3  ">
+              <div className="flex justify-evenly">
+                <label className="mr-5">Date</label>
+                <DatePicker
+                  onChange={onDateChange}
+                  defaultValue={bookingData?.data?.date}
+                />
               </div>
+              <div className="flex justify-evenly mt-10">
+                <label className="mr-5 ">Time</label>
+                <TimePicker
+                  use12Hours
+                  format="h:mm:ss A"
+                  onChange={onChange}
+                  defaultValue={dayjs("12:25:15", "HH:mm:ss")}
+                />
+              </div>
+              <div className="flex justify-evenly mt-10">
+                <label className="mr-6 ">Status</label>
+                <Select
+                  defaultValue="pending"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={[
+                    { value: "pending", label: "Pending" },
+                    { value: "accepted", label: "Accept" },
+                    { value: "rejected", label: "Reject" },
+                    { value: "delivered", label: "Delivered" },
+                  ]}
+                />
+              </div>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="w-16  mt-10 flex "
+              >
+                Update
+              </Button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

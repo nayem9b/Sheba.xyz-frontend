@@ -6,14 +6,50 @@ import {
 } from "@/redux/api/bookingApi";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
-import { Button, message } from "antd";
-import React from "react";
+import { Button, Rate, message } from "antd";
+import TextArea from "antd/es/input/TextArea";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const MyBookings = () => {
+  const router = useRouter();
   const { isLoaded, isSignedIn, user } = useUser();
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const [value, setValue] = useState(3);
+  const [reviews, setReviews] = useState<any>();
   const { data: myBookings } = useBookingsByUserIdQuery(user?.id);
   console.log(myBookings);
   const [deleteBooking] = useDeleteBookingMutation();
+  const [serviceId, setServiceId] = useState<any>();
+
+  const handlePostReview = async (e: any) => {
+    message.loading("Sending");
+    e.preventDefault();
+    const form = e.target;
+    console.log(form);
+    const review = form?.review?.value;
+    const SendReviewInfo = {
+      review: review,
+      rating: value,
+      servicesId: serviceId,
+      userImage: user?.imageUrl,
+      userId: user?.id,
+    };
+    console.log(SendReviewInfo);
+    fetch(`http://localhost:5000/api/v1/review`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(SendReviewInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        message.success("Your review is posted");
+        router.push(`/services/${serviceId}`);
+      });
+  };
 
   return (
     <div>
@@ -53,7 +89,37 @@ const MyBookings = () => {
                   </p>
                 </div>
               </div>
-
+              {booking?.status === "delivered" && (
+                <div>
+                  <h1 className="text-center mb-10">
+                    We will be happy to have your review
+                  </h1>
+                  <form className="w-3/6 mx-auto" onSubmit={handlePostReview}>
+                    <span>
+                      <Rate
+                        tooltips={desc}
+                        onChange={setValue}
+                        value={value}
+                        className="mx-auto justify-center place-items-center text-4xl"
+                      />
+                      {value ? (
+                        <span className="ant-rate-text">{desc[value - 1]}</span>
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                    <TextArea rows={4} name="review" />
+                    <Button
+                      htmlType="submit"
+                      type="primary"
+                      className="flex justify-end mt-5"
+                      onClick={() => setServiceId(booking?.service?.id)}
+                    >
+                      Submit
+                    </Button>
+                  </form>
+                </div>
+              )}
               <div className="flex gap-10 justify-end">
                 <div className="flex justify-end ">
                   <strong className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white">
@@ -78,17 +144,18 @@ const MyBookings = () => {
                     </span>
                   </strong>
                 </div>
-
-                <Button
-                  type="primary"
-                  danger
-                  onClick={() => {
-                    deleteBooking(booking?.id);
-                    message.success("Booking Deleted");
-                  }}
-                >
-                  Delete Booking <DeleteOutlined />
-                </Button>
+                {booking?.status !== "delivered" && (
+                  <Button
+                    type="primary"
+                    danger
+                    onClick={() => {
+                      deleteBooking(booking?.id);
+                      message.success("Booking Deleted");
+                    }}
+                  >
+                    Delete Booking <DeleteOutlined />
+                  </Button>
+                )}
               </div>
             </article>
           </>
