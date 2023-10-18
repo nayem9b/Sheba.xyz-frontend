@@ -11,10 +11,13 @@ import {
   EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { useOrganizationList, useUser } from "@clerk/nextjs";
+import { useOrganizationList, useSession, useUser } from "@clerk/nextjs";
 import dayjs from "dayjs";
+import { checkUserRole } from "@/utils/userUtils";
 
 const AllUsers = () => {
+  const { session } = useSession();
+  const userRole = checkUserRole(session);
   const { isSignedIn, user } = useUser();
   const [deleteUser] = useDeleteUserMutation();
   const router = useRouter();
@@ -24,27 +27,28 @@ const AllUsers = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [dbUserRole, setDbUserRole] = useState<string>("");
   const { data: allUsers, isLoading } = useAllUsersQuery();
   console.log(allUsers?.data);
   const meta = allUsers?.meta;
 
-  useEffect(() => {
-    if (isLoaded) {
-      // Find the admin organization from the loaded organization list
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     // Find the admin organization from the loaded organization list
 
-      const adminOrganization = organizationList.find(
-        (org) => org.membership.role === "admin"
-      );
+  //     const adminOrganization = organizationList.find(
+  //       (org) => org.membership.role === "admin"
+  //     );
 
-      // If the user is not an admin, redirect to the homepage
-      if (!adminOrganization || adminOrganization.membership.role !== "admin") {
-        router.push("/");
-        // Replace '/' with the homepage URL
-      } else {
-        // If the user is an admin, no need to wait for the organization list; render the admin page directly
-      }
-    }
-  }, [isLoaded, organizationList, router]);
+  //     // If the user is not an admin, redirect to the homepage
+  //     if (!adminOrganization || adminOrganization.membership.role !== "admin") {
+  //       router.push("/");
+  //       // Replace '/' with the homepage URL
+  //     } else {
+  //       // If the user is an admin, no need to wait for the organization list; render the admin page directly
+  //     }
+  //   }
+  // }, [isLoaded, organizationList, router]);
 
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....");
@@ -88,24 +92,28 @@ const AllUsers = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/allusers/edit/${data?.id}`}>
-              <Button
-                style={{
-                  margin: "0px 5px",
-                }}
-                onClick={() => console.log(data)}
-                type="primary"
-              >
-                <EditOutlined />
-              </Button>
-            </Link>
-            <Button
-              onClick={() => deleteHandler(data?.id)}
-              type="primary"
-              danger
-            >
-              <DeleteOutlined />
-            </Button>
+            {userRole === "admin" && (
+              <div>
+                <Link href={`/allusers/edit/${data?.id}`}>
+                  <Button
+                    style={{
+                      margin: "0px 5px",
+                    }}
+                    onClick={() => console.log(data)}
+                    type="primary"
+                  >
+                    <EditOutlined />
+                  </Button>
+                </Link>
+                <Button
+                  onClick={() => deleteHandler(data?.id)}
+                  type="primary"
+                  danger
+                >
+                  <DeleteOutlined />
+                </Button>
+              </div>
+            )}
           </>
         );
       },

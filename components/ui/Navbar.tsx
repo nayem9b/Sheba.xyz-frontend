@@ -3,13 +3,13 @@ import { SignedOut, UserButton, SignedIn, useSession } from "@clerk/nextjs";
 import { checkUserRole } from "../../utils/userUtils";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Navbar = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const { session } = useSession();
   const userRole = checkUserRole(session);
-  console.log(userRole);
+
   return (
     <div>
       <header className="bg-[#FCF8F1] bg-opacity-30">
