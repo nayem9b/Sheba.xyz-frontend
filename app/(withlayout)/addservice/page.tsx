@@ -1,5 +1,6 @@
 "use client";
 
+//@ts-ignore
 import React, { useState } from "react";
 import { Button, Select, Space, message } from "antd";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";

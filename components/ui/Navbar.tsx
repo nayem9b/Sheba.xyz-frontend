@@ -110,6 +110,13 @@ const Navbar = () => {
             {user ? (
               <div className="flex gap-8">
                 <Link
+                  href="/mycart"
+                  title=""
+                  className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                >
+                  My Cart
+                </Link>
+                <Link
                   href="/account"
                   title=""
                   className="text-base text-black transition-all duration-200 hover:text-opacity-80"
