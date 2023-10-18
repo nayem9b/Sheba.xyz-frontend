@@ -8,15 +8,25 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
 import { Button, message } from "antd";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const MyCart = () => {
   const { isLoaded, isSignedIn, user } = useUser();
-  const dispatch = useDispatch();
-  const { data } = useCartItemsByUserIdQuery(user?.id);
-  const CartItems = data?.data;
-  console.log(CartItems);
+  const [CartItems, setCartItems] = useState<any>();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/mycart/${user?.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("my cart services", data.data);
+        setCartItems(data?.data);
+      });
+  }, [user?.id]);
+
+  // const { data } = useCartItemsByUserIdQuery(user?.id);
+  // const CartItems = data?.data;
+  // console.log(CartItems);
   const [deleteCart] = useDeleteCartMutation();
   const handleRemoveFromCart = async (id: string) => {
     message.success("Deleted from your cart");
@@ -25,7 +35,7 @@ const MyCart = () => {
   };
   return (
     <div>
-      {CartItems.length > 0 ? (
+      {CartItems?.length > 0 ? (
         <>
           {" "}
           <section>

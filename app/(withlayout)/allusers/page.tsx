@@ -1,7 +1,7 @@
 "use client";
 
 import ShebaTable from "@/components/ui/ShebaTable";
-import { useAllUsersQuery } from "@/redux/api/userApi";
+import { useAllUsersQuery, useDeleteUserMutation } from "@/redux/api/userApi";
 import { Button, message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,10 +11,12 @@ import {
   EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { useOrganizationList } from "@clerk/nextjs";
+import { useOrganizationList, useUser } from "@clerk/nextjs";
 import dayjs from "dayjs";
 
 const AllUsers = () => {
+  const { isSignedIn, user } = useUser();
+  const [deleteUser] = useDeleteUserMutation();
   const router = useRouter();
   const { organizationList, isLoaded, setActive } = useOrganizationList();
   const [page, setPage] = useState<number>(1);
@@ -37,10 +39,9 @@ const AllUsers = () => {
       // If the user is not an admin, redirect to the homepage
       if (!adminOrganization || adminOrganization.membership.role !== "admin") {
         router.push("/");
-        message.success("welcome"); // Replace '/' with the homepage URL
+        // Replace '/' with the homepage URL
       } else {
         // If the user is an admin, no need to wait for the organization list; render the admin page directly
-        message.success("welcome");
       }
     }
   }, [isLoaded, organizationList, router]);
@@ -48,11 +49,9 @@ const AllUsers = () => {
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....");
     try {
-      console.log("Hello");
-      // const res = await deleteAcademicDepartment(id);
-      // if (res) {
-      //   message.success("Department Deleted successfully");
-      // }
+      const res = await deleteUser(user?.id);
+      console.log(id, res);
+      window.location.reload();
     } catch (err: any) {
       //   console.error(err.message);
       message.error(err.message);

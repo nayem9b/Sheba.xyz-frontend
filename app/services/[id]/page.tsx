@@ -48,6 +48,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        message.success("Service added to your cart");
       });
   };
 
