@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import {
   DownloadOutlined,
+  EditOutlined,
   RotateLeftOutlined,
   RotateRightOutlined,
   SwapOutlined,
@@ -31,6 +32,7 @@ const page = () => {
         link.remove();
       });
   };
+  console.log(user);
   return (
     <div>
       <h1 className="text-center">Personal Info</h1>
@@ -70,74 +72,23 @@ const page = () => {
           ),
         }}
       />
-      <div className="mx-auto flex justify-center ">
-        <div className="flex w-3/6 justify-around ">
-          <h1>Name</h1>
-          <h1>{user?.fullName}</h1>
+
+      <div className="flex">
+        <p className="text-lg mt-6"> Edit Data : </p>
+
+        <div className="mt-6 ml-4">
+          <UserButton afterSignOutUrl="/" />
         </div>
-        <div className="flex w-3/6 justify-around ">
-          <h1>Email</h1>
-          <h1>{user?.primaryEmailAddress?.emailAddress}</h1>
-        </div>
-        <div className="flex w-3/6 justify-around ">
-          <h1>User Name</h1>
-          <h1>{user?.username}</h1>
-        </div>
+      </div>
+      <div className="mx-auto  ">
+        <h1>
+          Name : {user?.fullName ? user?.fullName : "Name is not updated "}
+        </h1>
+        <h1>Email : {user?.primaryEmailAddress?.emailAddress}</h1>
+        <h1>User Name : {user?.username}</h1>
       </div>
     </div>
   );
 };
 
 export default page;
-
-// const App: React.FC = () => {
-//   // or you can download flipped and rotated image
-//   // https://codesandbox.io/s/zi-ding-yi-gong-ju-lan-antd-5-7-0-forked-c9jvmp
-//   const onDownload = () => {
-//     fetch(src)
-//       .then((response) => response.blob())
-//       .then((blob) => {
-//         const url = URL.createObjectURL(new Blob([blob]));
-//         const link = document.createElement("a");
-//         link.href = url;
-//         link.download = "image.png";
-//         document.body.appendChild(link);
-//         link.click();
-//         URL.revokeObjectURL(url);
-//         link.remove();
-//       });
-//   };
-
-//   return (
-//     <Image
-//       width={200}
-//       src={src}
-//       preview={{
-//         toolbarRender: (
-//           _,
-//           {
-//             transform: { scale },
-//             actions: {
-//               onFlipY,
-//               onFlipX,
-//               onRotateLeft,
-//               onRotateRight,
-//               onZoomOut,
-//               onZoomIn,
-//             },
-//           }
-//         ) => (
-//           <Space size={12} className="toolbar-wrapper">
-//             <DownloadOutlined onClick={onDownload} />
-//             <SwapOutlined rotate={90} onClick={onFlipY} />
-//             <SwapOutlined onClick={onFlipX} />
-//             <RotateLeftOutlined onClick={onRotateLeft} />
-//             <RotateRightOutlined onClick={onRotateRight} />
-//             <ZoomOutOutlined disabled={scale === 1} onClick={onZoomOut} />
-//             <ZoomInOutlined disabled={scale === 50} onClick={onZoomIn} />
-//           </Space>
-//         ),
-//       }}
-//     />
-//   );
-// };

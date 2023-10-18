@@ -95,6 +95,7 @@ const PurchasePage = ({ params }: { params: any }) => {
     ]);
 
   function onSubmit(e: any) {
+    message.loading("processing");
     e.preventDefault();
     const form = e.target;
     const name = form?.fullName?.value;

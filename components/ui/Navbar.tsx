@@ -62,14 +62,14 @@ const Navbar = () => {
             </button>
 
             <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
-              <a
-                href="#"
+              <Link
+                href="/"
                 title=""
                 className="text-base text-black transition-all duration-200 hover:text-opacity-80"
               >
                 {" "}
-                Features{" "}
-              </a>
+                Home
+              </Link>
 
               <a
                 href="#"
@@ -98,17 +98,18 @@ const Navbar = () => {
                 Blogs{" "}
               </Link>
             </div>
-            {userRole === "admin" && (
-              <Link
-                href="/admin"
-                title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
-              >
-                Dashboard
-              </Link>
-            )}
+
             {user ? (
               <div className="flex gap-8">
+                {userRole === "admin" && (
+                  <Link
+                    href="/admin"
+                    title=""
+                    className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                  >
+                    Dashboard
+                  </Link>
+                )}
                 <Link
                   href="/mycart"
                   title=""

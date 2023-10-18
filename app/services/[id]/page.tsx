@@ -128,7 +128,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
                       className="mr-3 mt-3"
                       onClick={handleAddToCart}
                     >
-                      Purchase <CreditCardOutlined />
+                      Book Service <CreditCardOutlined />
                     </Button>
                   </Link>
 
