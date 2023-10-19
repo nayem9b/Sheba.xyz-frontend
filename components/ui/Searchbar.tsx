@@ -20,7 +20,10 @@ const SearchPage = () => {
   const [name, setName] = useState();
   const [category, setCategory] = useState();
   const [selectedField, setSelectedField] = useState<string>();
-  const { data: allServices } = useServicesQuery();
+  const { data: allServices } = useServicesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   const onSearch: any["onSearch"] = (value: any, _e: any, info: any) =>
     console.log(value);
 
@@ -30,7 +33,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center mt-7">
       <form>
         <Search
           placeholder="input search text"
@@ -38,11 +41,7 @@ const SearchPage = () => {
           style={{
             width: "486px",
             height: "60px",
-            paddingBottom: "10px",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            paddingTop: "10px",
-            position: "absolute",
+
             bottom: "300px",
             left: 0,
           }}

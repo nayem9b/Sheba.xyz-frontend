@@ -4,7 +4,10 @@ import { useGetAllFeedbacksQuery } from "@/redux/api/feedbackApi";
 import React from "react";
 
 const AllFeedbacks = () => {
-  const { data: allFeedbacks } = useGetAllFeedbacksQuery();
+  const { data: allFeedbacks } = useGetAllFeedbacksQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   console.log(allFeedbacks);
 
   return (

@@ -36,7 +36,7 @@ const MyBookings = () => {
       userId: user?.id,
     };
     console.log(SendReviewInfo);
-    fetch(`http://localhost:5000/api/v1/review`, {
+    fetch(`https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

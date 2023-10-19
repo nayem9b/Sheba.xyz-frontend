@@ -33,7 +33,11 @@ const AddService = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectData, setSelectData] = useState();
-  const { data: allServices, isLoading } = useServicesQuery();
+  const { data: allServices, isLoading } = useServicesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  console.log(allServices);
 
   console.log(allServices?.data?.data);
   const meta = allServices?.meta;
@@ -160,13 +164,16 @@ const AddService = () => {
 
           console.log(addServiceSendData);
 
-          fetch(`http://localhost:5000/api/v1/create-service`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(addServiceSendData),
-          })
+          fetch(
+            `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/create-service`,
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(addServiceSendData),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
@@ -256,7 +263,7 @@ const AddService = () => {
         <ShebaTable
           loading={isLoading}
           columns={columns}
-          dataSource={allServices?.data?.data}
+          dataSource={allServices?.data}
           pageSize={size}
           totalPages={meta?.total}
           showSizeChanger={true}

@@ -5,7 +5,10 @@ import { useCategoriesQuery } from "@/redux/api/categoryApi";
 import React from "react";
 
 const AllCategoryPage = () => {
-  const { data: allCategories } = useCategoriesQuery();
+  const { data: allCategories } = useCategoriesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
 
   return (
     <div>

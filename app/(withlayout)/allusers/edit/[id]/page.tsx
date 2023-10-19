@@ -19,7 +19,9 @@ const EditUserPage = ({ params }: IDProps) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/users/db/${id}`)
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/users/db/${id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -33,13 +35,16 @@ const EditUserPage = ({ params }: IDProps) => {
     const updatedInfo = {
       role: role,
     };
-    fetch(`http://localhost:5000/api/v1/users/${userData?.userId}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedInfo),
-    })
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/users/${userData?.userId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -12,13 +12,16 @@ const FeedbackForm = () => {
       feedback: feedback,
     };
 
-    fetch(`http://localhost:5000/api/v1/my-feedback`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(sendFeedbackData),
-    })
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/my-feedback`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(sendFeedbackData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

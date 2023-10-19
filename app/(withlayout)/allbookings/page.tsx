@@ -20,7 +20,10 @@ const AllBookingsPage = () => {
   const [allBookings, setAllBookings] = useState();
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const { data: allBookingsData, isLoading } = useAllBookingsQuery();
+  const { data: allBookingsData, isLoading } = useAllBookingsQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   console.log(allBookingsData?.data);
   const meta = allBookingsData?.meta;
   const deleteHandler = async (id: string) => {
@@ -102,7 +105,7 @@ const AllBookingsPage = () => {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/bookings`)
+    fetch(`https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/bookings`)
       .then((res) => res.json())
       .then((data) => {
         setAllBookings(data?.data);

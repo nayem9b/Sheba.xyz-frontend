@@ -33,13 +33,16 @@ const AddCategorypage = () => {
             image: imgData.data.url,
           };
 
-          fetch(`http://localhost:5000/api/v1/categories`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(categorySendData),
-          })
+          fetch(
+            `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/categories`,
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(categorySendData),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.data) {

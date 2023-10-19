@@ -9,7 +9,10 @@ import FeedbackForm from "@/components/ui/FeedbackForm";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
 
 const Homepage = () => {
-  const { data: categoryData } = useCategoriesQuery();
+  const { data: categoryData } = useCategoriesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   console.log(categoryData);
   return (
     <div>
@@ -21,7 +24,8 @@ const Homepage = () => {
           placeholder="blur"
           className="object-fill w-full"
         ></Image>
-        <Search></Search>
+
+        <Search />
       </div>
     </div>
   );

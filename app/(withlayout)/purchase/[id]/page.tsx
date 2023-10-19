@@ -79,7 +79,9 @@ const PurchasePage = ({ params }: { params: any }) => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/services/${id}`)
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setServiceData(data);
@@ -143,7 +145,7 @@ const PurchasePage = ({ params }: { params: any }) => {
     };
     console.log(SendPurchaseInfo);
     if (confirmation === "I Agree") {
-      fetch(`http://localhost:5000/api/v1/book`, {
+      fetch(`https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/book`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -159,11 +161,11 @@ const PurchasePage = ({ params }: { params: any }) => {
   }
   return (
     <div className="flex justify-around gap-16 mx-40 mt-32">
-      <div>
+      <div className="w-1/2">
         <img
           alt="Art"
           src={serviceInfo?.image}
-          className="h-64 w-full object-cover sm:h-80 lg:h-96"
+          className="h-64  object-cover sm:h-80 lg:h-96"
         />
 
         <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
@@ -171,7 +173,7 @@ const PurchasePage = ({ params }: { params: any }) => {
         </h3>
 
         <p className="mt-2 text-xl text-gray-700">
-          Price : {serviceInfo?.price}
+          <span className="font-semibold">Price :</span> {serviceInfo?.price} Tk
         </p>
         <p className="mt-2 text-xl text-gray-700">
           Rating : {serviceInfo?.rating} ⭐
@@ -179,7 +181,9 @@ const PurchasePage = ({ params }: { params: any }) => {
         <p className="mt-2 text-xl text-gray-700">
           Location : {serviceInfo?.location}
         </p>
-        <p className="mt-2 text-xl text-gray-700">{serviceInfo?.details}</p>
+        <p className="mt-2 text-xl text-gray-700 text-justify">
+          {serviceInfo?.details}
+        </p>
       </div>
       <div
         style={{

@@ -16,7 +16,9 @@ const MyCart = () => {
   const [CartItems, setCartItems] = useState<any>();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/mycart/${user?.id}`)
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/mycart/${user?.id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("my cart services", data.data);

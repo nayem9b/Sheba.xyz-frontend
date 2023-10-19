@@ -14,7 +14,10 @@ const EditServicepage = ({ params }: { params: any }) => {
     console.log(`selected ${value}`);
     setSelectData(value);
   };
-  const { data: allCategories } = useCategoriesQuery();
+  const { data: allCategories } = useCategoriesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   const categoryOptions = allCategories?.data?.map((category: any) => {
     return {
       label: category?.title,
@@ -23,7 +26,7 @@ const EditServicepage = ({ params }: { params: any }) => {
   });
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/v1/services/${id}`
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -64,7 +67,7 @@ const EditServicepage = ({ params }: { params: any }) => {
           };
 
           fetch(
-            `http://localhost:5000/api/v1/services/${id}`,
+            `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`,
             {
               method: "PATCH",
               headers: {

@@ -8,7 +8,7 @@ import { useAllContentsQuery } from "@/redux/api/contentsApi";
 const AllContentspage = () => {
   // const [contentsData, setContentsData] = useState<any>();
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/api/v1/contents`)
+  //   fetch(`https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/contents`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data.data);
@@ -16,7 +16,10 @@ const AllContentspage = () => {
   //     });
   // }, []);
 
-  const { data: contentsData } = useAllContentsQuery();
+  const { data: contentsData } = useAllContentsQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   console.log(contentsData);
   return (
     <div>

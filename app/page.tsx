@@ -19,14 +19,27 @@ import Partners from "@/components/ui/Partners";
 import FeedbackForm from "@/components/ui/FeedbackForm";
 import CallToAction from "@/components/ui/CallToAction";
 import FAQ from "@/components/ui/FAQ";
+import UpcomingServiceCard from "@/components/ui/UpcomingServiceCard";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
 
-  const { data: categoryData } = useCategoriesQuery();
-  const { data: allservices } = useServicesQuery();
-  const { data: upcomingServices } = useUpcomingServicesQuery();
-  const { data: availableServices } = useAvailableServicesQuery();
+  const { data: categoryData } = useCategoriesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  const { data: allservices } = useServicesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  const { data: upcomingServices } = useUpcomingServicesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  const { data: availableServices } = useAvailableServicesQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   console.log(upcomingServices, availableServices);
   const [userInfo, setUserInfo] = useState({});
   const [addUser] = useAddUserMutation();
@@ -34,7 +47,9 @@ export default function Home() {
   console.log(categoryData, services);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/users/${user?.id}`)
+    fetch(
+      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/users/${user?.id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data.data);
@@ -53,13 +68,16 @@ export default function Home() {
 
   if (isLoaded && isSignedIn) {
     if (!userInfo) {
-      fetch(`http://localhost:5000/api/v1/auth/signup`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(sendToDbUserInfo),
-      })
+      fetch(
+        `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/auth/signup`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(sendToDbUserInfo),
+        }
+      )
         .then((res) => res.json())
         .then((data) => console.log(data));
     }
@@ -82,7 +100,7 @@ export default function Home() {
       <h1 className="text-center text-blue-600 my-20">Upcoming Services</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
         {upcomingServices?.data?.map((service: any) => (
-          <ServiceHomeCard key={service.name} service={service} />
+          <UpcomingServiceCard key={service.name} service={service} />
         ))}
       </div>
       <Partners />
