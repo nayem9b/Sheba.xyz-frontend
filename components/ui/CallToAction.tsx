@@ -5,7 +5,7 @@ import React from "react";
 const CallToAction = () => {
   return (
     <div>
-      <section className="bg-white">
+      <section className="bg-gray-50">
         <div className="container flex flex-col items-center px-4 py-12 mx-auto xl:flex-row">
           <div className="flex justify-center xl:w-1/2">
             <img
@@ -16,7 +16,7 @@ const CallToAction = () => {
           </div>
 
           <div className="flex flex-col items-center mt-6 xl:items-start xl:w-1/2 xl:mt-0">
-            <h2 className="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            <h2 className="text-2xl font-semibold tracking-tight  xl:text-3xl ">
               Download our free mobile app
             </h2>
 

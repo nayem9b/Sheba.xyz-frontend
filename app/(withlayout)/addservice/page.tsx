@@ -161,20 +161,20 @@ const AddService = () => {
 
           console.log(addServiceSendData, ServiceStatus);
 
-          fetch(`http://localhost:5000/api/v1/create-service`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(addServiceSendData),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              message.success("successful");
-              form.reset();
-              // window.location.reload();
-            });
+          // fetch(`http://localhost:5000/api/v1/create-service`, {
+          //   method: "POST",
+          //   headers: {
+          //     "content-type": "application/json",
+          //   },
+          //   body: JSON.stringify(addServiceSendData),
+          // })
+          //   .then((res) => res.json())
+          //   .then((data) => {
+          //     console.log(data);
+          //     message.success("successful");
+          //     form.reset();
+          //     // window.location.reload();
+          //   });
         }
       });
   };

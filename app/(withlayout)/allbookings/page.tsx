@@ -111,6 +111,7 @@ const AllBookingsPage = () => {
   }, []);
   return (
     <div>
+      <h1 className="text-center text-blue-600 mb-10">Manage Bookings</h1>
       <ShebaTable
         loading={isLoading}
         columns={columns}

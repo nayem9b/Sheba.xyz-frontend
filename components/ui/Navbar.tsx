@@ -71,23 +71,22 @@ const Navbar = () => {
                 Home
               </Link>
 
-              <a
-                href="#"
+              <Link
+                href="/allcategories"
                 title=""
                 className="text-base text-black transition-all duration-200 hover:text-opacity-80"
               >
                 {" "}
-                Solutions{" "}
-              </a>
-
-              <a
-                href="#"
+                Categories
+              </Link>
+              <Link
+                href="/allservices"
                 title=""
                 className="text-base text-black transition-all duration-200 hover:text-opacity-80"
               >
                 {" "}
-                Resources{" "}
-              </a>
+                Services
+              </Link>
 
               <Link
                 href="/allcontents"
@@ -96,6 +95,14 @@ const Navbar = () => {
               >
                 {" "}
                 Blogs{" "}
+              </Link>
+              <Link
+                href="/#faq"
+                title=""
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+              >
+                {" "}
+                FAQ
               </Link>
             </div>
 

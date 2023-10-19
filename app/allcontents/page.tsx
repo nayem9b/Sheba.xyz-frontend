@@ -17,14 +17,21 @@ const AllContentspage = () => {
   // }, []);
 
   const { data: contentsData } = useAllContentsQuery();
-
+  console.log(contentsData);
   return (
     <div>
-      <div className="grid grid-cols-4 mx-60 gap-10">
-        {contentsData?.data?.map((content: any) => (
-          <ContentsCard key={content.name} content={content} />
-        ))}
-      </div>
+      {contentsData?.data?.length > 0 ? (
+        <div>
+          <h1 className="text-center text-blue-500">All Blogs</h1>
+          <div className="grid grid-cols-4 mx-60 gap-10">
+            {contentsData?.data?.map((content: any) => (
+              <ContentsCard key={content.name} content={content} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <h1 className="text-blue-500 text-center">No contents published</h1>
+      )}
     </div>
   );
 };

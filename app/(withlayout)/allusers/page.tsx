@@ -148,17 +148,20 @@ const AllUsers = () => {
 
   return (
     <div>
-      <ShebaTable
-        loading={isLoading}
-        columns={columns}
-        dataSource={allUsers?.data}
-        pageSize={size}
-        totalPages={meta?.total}
-        showSizeChanger={true}
-        onPaginationChange={onPaginationChange}
-        onTableChange={onTableChange}
-        showPagination={true}
-      ></ShebaTable>
+      <h1 className="text-center text-blue-500">Manage Users</h1>
+      <div className="mx-5">
+        <ShebaTable
+          loading={isLoading}
+          columns={columns}
+          dataSource={allUsers?.data}
+          pageSize={size}
+          totalPages={meta?.total}
+          showSizeChanger={true}
+          onPaginationChange={onPaginationChange}
+          onTableChange={onTableChange}
+          showPagination={true}
+        ></ShebaTable>
+      </div>
     </div>
   );
 };

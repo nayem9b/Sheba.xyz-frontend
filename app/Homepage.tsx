@@ -17,9 +17,9 @@ const Homepage = () => {
         <Image
           src={banner}
           alt="banner"
-          width={1920}
           height={460}
-          className="object-cover"
+          placeholder="blur"
+          className="object-fill w-full"
         ></Image>
         <Search></Search>
       </div>

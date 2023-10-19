@@ -18,6 +18,7 @@ import News from "@/components/ui/News";
 import Partners from "@/components/ui/Partners";
 import FeedbackForm from "@/components/ui/FeedbackForm";
 import CallToAction from "@/components/ui/CallToAction";
+import FAQ from "@/components/ui/FAQ";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -87,6 +88,7 @@ export default function Home() {
       <Partners />
       <CompanyPeople />
       <Testimonial />
+      <FAQ />
       <News />
       <FeedbackForm />
       <CallToAction />

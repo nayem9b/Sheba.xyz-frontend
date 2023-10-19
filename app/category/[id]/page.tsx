@@ -18,9 +18,7 @@ const ServicesUnderCategoryPage = ({ params }: { params: any }) => {
   console.log(servicesUnderCategory);
   return (
     <div>
-      <h1 className="text-center">
-        {/* Services under {servicesUnderCategory[0]?.category?.name} */}
-      </h1>
+      <h1 className="text-center">Services under Category</h1>
       <div className="mx-auto">
         <div className="grid grid-cols-4 mx-60 gap-10 ">
           {servicesUnderCategory?.map((service: any) => (
