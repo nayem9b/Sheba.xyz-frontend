@@ -20,6 +20,22 @@ export const servicesApi: any = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.service],
     }),
+    upcomingServices: build.query({
+      query: (arg: Record<string, any>) => ({
+        url: `/servicestatus/upcoming`,
+        method: "GET",
+        params: arg,
+      }),
+      providesTags: [tagTypes.service],
+    }),
+    availableServices: build.query({
+      query: (arg: Record<string, any>) => ({
+        url: `/servicestatus/available`,
+        method: "GET",
+        params: arg,
+      }),
+      providesTags: [tagTypes.service],
+    }),
 
     singleServices: build.query({
       query: (id: string | string[] | undefined) => ({
@@ -42,4 +58,6 @@ export const {
   useServicesQuery,
   useDeleteServiceMutation,
   useSingleServicesQuery,
+  useUpcomingServicesQuery,
+  useAvailableServicesQuery,
 } = servicesApi;

@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { useUser } from "@clerk/nextjs";
-import { useServicesQuery } from "@/redux/api/servicesApi";
+import {
+  useAvailableServicesQuery,
+  useServicesQuery,
+  useUpcomingServicesQuery,
+} from "@/redux/api/servicesApi";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
 import Homepage from "./Homepage";
 import CategoryHomeCard from "@/components/ui/CategoryHomeCard";
@@ -20,6 +24,9 @@ export default function Home() {
 
   const { data: categoryData } = useCategoriesQuery();
   const { data: allservices } = useServicesQuery();
+  const { data: upcomingServices } = useUpcomingServicesQuery();
+  const { data: availableServices } = useAvailableServicesQuery();
+  console.log(upcomingServices, availableServices);
   const [userInfo, setUserInfo] = useState({});
   const [addUser] = useAddUserMutation();
   const services = allservices?.data?.data;
@@ -59,15 +66,21 @@ export default function Home() {
   return (
     <>
       <Homepage />
-      <h1>All Categories</h1>
-      <div className="grid grid-cols-4 mx-60 gap-10">
+      <h1 className="text-center">All Categories</h1>
+      <div className="grid lg:grid-cols-8 sm:grid-cols-4 md:grid-cols-6 gap-10 lg:mx-60">
         {categoryData?.data?.map((category: any) => (
           <CategoryHomeCard key={category.name} category={category} />
         ))}
       </div>
-      <h1>All Services</h1>
+      <h1 className="text-center">Available Services</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
-        {services?.map((service: any) => (
+        {availableServices?.data?.map((service: any) => (
+          <ServiceHomeCard key={service.name} service={service} />
+        ))}
+      </div>
+      <h1 className="text-center">Upcoming Services</h1>
+      <div className="grid grid-cols-4 mx-60 gap-10">
+        {upcomingServices?.data?.map((service: any) => (
           <ServiceHomeCard key={service.name} service={service} />
         ))}
       </div>

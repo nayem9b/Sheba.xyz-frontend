@@ -13,6 +13,7 @@ import {
   useDeleteServiceMutation,
   useServicesQuery,
 } from "@/redux/api/servicesApi";
+import { setToLocalStorage } from "@/utils/local-storage";
 
 type UserData = {
   name: string;
@@ -31,7 +32,10 @@ const AddService = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectData, setSelectData] = useState();
+  const [ServiceStatus, setServiceStatus] = useState<string>("");
   const { data: allServices, isLoading } = useServicesQuery();
+
   console.log(allServices?.data?.data);
   const meta = allServices?.meta;
 
@@ -51,10 +55,14 @@ const AddService = () => {
       message.error(err.message);
     }
   };
-  const [selectData, setSelectData] = useState();
+
   const handleChange = (value: any) => {
     console.log(`selected ${value}`);
-    setSelectData(value);
+    setServiceStatus(value);
+  };
+  const handleStatusChange = (value: any) => {
+    console.log(`selected ${value}`);
+    setToLocalStorage("status", value as string);
   };
   console.log(selectData);
   const { data: allCategories } = useCategoriesQuery();
@@ -125,6 +133,7 @@ const AddService = () => {
     const name = form?.name.value;
     const price = form?.price.value;
     const details = form?.details.value;
+    const status = ServiceStatus;
 
     const image = form.image.files[0];
     const formData = new FormData();
@@ -145,9 +154,12 @@ const AddService = () => {
             price: price,
             details: details,
             image: imgData.data.url,
-            categoryId: selectData,
+            categoryId: status,
+            status: selectData,
             rating: "5",
           };
+
+          console.log(addServiceSendData, ServiceStatus);
 
           fetch(`http://localhost:5000/api/v1/create-service`, {
             method: "POST",
@@ -161,6 +173,7 @@ const AddService = () => {
               console.log(data);
               message.success("successful");
               form.reset();
+              // window.location.reload();
             });
         }
       });
@@ -180,6 +193,19 @@ const AddService = () => {
               style={{ width: 170 }}
               options={categoryOptions}
             />
+            <div className="mt-2">
+              <label className="mt-5"> Select Status</label>
+              <Select
+                className="w-full"
+                defaultValue="available"
+                style={{ width: 120 }}
+                onChange={handleStatusChange}
+                options={[
+                  { value: "available", label: "Available" },
+                  { value: "upcoming", label: "Upcoming" },
+                ]}
+              />
+            </div>
             <div>
               <label> Name</label>
               <input

@@ -123,7 +123,7 @@ const EditBookingPage = ({ params }: IDProps) => {
               <div className="flex justify-evenly mt-10">
                 <label className="mr-6 ">Status</label>
                 <Select
-                  defaultValue="pending"
+                  defaultValue="Select"
                   style={{ width: 120 }}
                   onChange={handleChange}
                   options={[

@@ -1,3 +1,5 @@
+import { message } from "antd";
+
 const FeedbackForm = () => {
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
@@ -20,6 +22,8 @@ const FeedbackForm = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
+        message.success("Feedback Sent");
       });
   };
   return (
@@ -72,15 +76,16 @@ const FeedbackForm = () => {
                     placeholder="Message"
                     id="message"
                     name="message"
+                    required
                   ></textarea>
                 </div>
 
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                    className=" cursor-pointer inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
                   >
-                    Send Enquiry
+                    Send Feedback
                   </button>
                 </div>
               </form>

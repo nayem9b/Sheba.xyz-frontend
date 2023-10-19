@@ -28,8 +28,11 @@ const AllUsers = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [dbUserRole, setDbUserRole] = useState<string>("");
+  const [fetchFromDB, setFetchFromDB] = useState<string>("");
+  const [deleteUserId, setDeleteUserId] = useState<string>("");
+
   const { data: allUsers, isLoading } = useAllUsersQuery();
-  console.log(allUsers?.data);
+
   const meta = allUsers?.meta;
 
   // useEffect(() => {
@@ -50,12 +53,35 @@ const AllUsers = () => {
   //   }
   // }, [isLoaded, organizationList, router]);
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/api/v1/users/db/${fetchFromDB}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data?.data);
+  //       setDeleteUserId(data?.data?.userId);
+  //     });
+  // }, [fetchFromDB]);
+
+  console.log(deleteUserId);
   const deleteHandler = async (id: string) => {
+    // setFetchFromDB(id);
     message.loading("Deleting.....");
+    fetch(`http://localhost:5000/api/v1/users/db/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data?.data);
+        setDeleteUserId(data?.data?.userId);
+      });
     try {
-      const res = await deleteUser(user?.id);
-      console.log(id, res);
-      window.location.reload();
+      fetch(`http://localhost:5000/api/v1/users/${deleteUserId}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          window.location.reload();
+          message.success("User Deleted Successfully");
+        });
     } catch (err: any) {
       //   console.error(err.message);
       message.error(err.message);

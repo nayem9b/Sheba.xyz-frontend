@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 const CategoryHomeCard = ({ category }: any) => {
   return (
@@ -7,17 +8,17 @@ const CategoryHomeCard = ({ category }: any) => {
       <Link
         style={{ textDecoration: "none" }}
         href={`/category/${category?.id}`}
-        className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        className="rounded-lg  shadow-sm shadow-indigo-200 "
       >
-        <img
+        <Image
           alt="Home"
           src={category?.image}
-          className="h-52 w-full rounded-md object-cover"
+          className="md:ml-4 lg:ml-7 block h-20 w-20 rounded-md object-cover"
+          width={60}
+          height={60}
         />
 
-        <div className="mt-2 text-center text-black font-semibold">
-          <p className="font-medium mx-auto ">{category?.title}</p>
-        </div>
+        <p className="font-medium text-center mx-auto ">{category?.title}</p>
       </Link>
     </div>
   );
