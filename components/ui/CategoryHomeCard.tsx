@@ -8,7 +8,7 @@ const CategoryHomeCard = ({ category }: any) => {
       <Link
         style={{ textDecoration: "none" }}
         href={`/category/${category?.id}`}
-        className="rounded-lg  shadow-sm shadow-indigo-200 "
+        className="rounded-lg text-black shadow-sm shadow-indigo-200 "
       >
         <Image
           alt="Home"

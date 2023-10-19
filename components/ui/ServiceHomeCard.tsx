@@ -7,12 +7,16 @@ const ServiceHomeCard = ({ service }: any) => {
       <Link
         style={{ textDecoration: "none" }}
         href={`/services/${service?.id}`}
-        className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        className=" rounded-lg  shadow-sm shadow-indigo-100 disabled:opacity-75 "
       >
-        <img alt="Home" src={service?.image} className="w-40 h-40" />
+        <img
+          alt="Home"
+          src={service?.image}
+          className="w-52 h-52 mx-auto justify-center place-content-start place-items-center rounded-xl"
+        />
 
-        <div className="mt-2 text-center text-black font-semibold">
-          <p className="font-medium mx-auto ">{service?.name}</p>
+        <div className="mt-2  text-black font-semibold">
+          <p className="font-medium mx-auto mt-6 ">{service?.name}</p>
         </div>
       </Link>
     </div>

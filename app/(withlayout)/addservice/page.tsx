@@ -33,7 +33,6 @@ const AddService = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectData, setSelectData] = useState();
-  const [ServiceStatus, setServiceStatus] = useState<string>("");
   const { data: allServices, isLoading } = useServicesQuery();
 
   console.log(allServices?.data?.data);
@@ -57,8 +56,8 @@ const AddService = () => {
   };
 
   const handleChange = (value: any) => {
+    setSelectData(value);
     console.log(`selected ${value}`);
-    setServiceStatus(value);
   };
   const handleStatusChange = (value: any) => {
     console.log(`selected ${value}`);
@@ -133,8 +132,8 @@ const AddService = () => {
     const name = form?.name.value;
     const price = form?.price.value;
     const details = form?.details.value;
-    const status = ServiceStatus;
-
+    const status = form?.status?.value;
+    console.log(selectData);
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -154,27 +153,26 @@ const AddService = () => {
             price: price,
             details: details,
             image: imgData.data.url,
-            categoryId: status,
-            status: selectData,
+            categoryId: selectData,
+            status: status,
             rating: "5",
           };
 
-          console.log(addServiceSendData, ServiceStatus);
+          console.log(addServiceSendData);
 
-          // fetch(`http://localhost:5000/api/v1/create-service`, {
-          //   method: "POST",
-          //   headers: {
-          //     "content-type": "application/json",
-          //   },
-          //   body: JSON.stringify(addServiceSendData),
-          // })
-          //   .then((res) => res.json())
-          //   .then((data) => {
-          //     console.log(data);
-          //     message.success("successful");
-          //     form.reset();
-          //     // window.location.reload();
-          //   });
+          fetch(`http://localhost:5000/api/v1/create-service`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(addServiceSendData),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              message.success("successful");
+              form.reset();
+            });
         }
       });
   };
@@ -193,18 +191,12 @@ const AddService = () => {
               style={{ width: 170 }}
               options={categoryOptions}
             />
-            <div className="mt-2">
+            <div className="">
               <label className="mt-5"> Select Status</label>
-              <Select
-                className="w-full"
-                defaultValue="available"
-                style={{ width: 120 }}
-                onChange={handleStatusChange}
-                options={[
-                  { value: "available", label: "Available" },
-                  { value: "upcoming", label: "Upcoming" },
-                ]}
-              />
+              <select name="status" className="w-full" id="country">
+                <option value="available">available</option>
+                <option value="upcoming">upcoming</option>
+              </select>
             </div>
             <div>
               <label> Name</label>

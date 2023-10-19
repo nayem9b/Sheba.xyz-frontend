@@ -11,8 +11,8 @@ const News = () => {
                 Latest from blog
               </h2>
               <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600 lg:mx-0">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis.
+                In conversation with Fournetsha Bangladesh – the company behind
+                Bangladesh’s latest original manga magazine
               </p>
             </div>
 
@@ -66,7 +66,7 @@ const News = () => {
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
                       className="object-cover w-full h-full"
-                      src="https://cdn.rareblocks.xyz/collection/celebration/images/blog/2/blog-post-1.jpg"
+                      src="https://www.unicef.org/bangladesh/sites/unicef.org.bangladesh/files/styles/press_release_feature/public/Social%20Work%20Campaign.png?itok=7uGQb3wA"
                       alt=""
                     />
                   </a>
@@ -120,7 +120,7 @@ const News = () => {
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
                       className="object-cover w-full h-full"
-                      src="https://cdn.rareblocks.xyz/collection/celebration/images/blog/2/blog-post-2.jpg"
+                      src="https://pathao.com/wp-content/uploads/2019/08/SameDay-Delivery_Blog-1024x536.png"
                       alt=""
                     />
                   </a>
@@ -143,8 +143,8 @@ const News = () => {
                   </a>
                 </p>
                 <p className="mt-4 text-base text-gray-600">
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
+                  In conversation with Fournetsha Bangladesh – the company
+                  behind Bangladesh’s latest original manga magazine
                 </p>
                 <a
                   href="#"
@@ -174,7 +174,7 @@ const News = () => {
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
                       className="object-cover w-full h-full"
-                      src="https://cdn.rareblocks.xyz/collection/celebration/images/blog/2/blog-post-3.jpg"
+                      src="https://tfe-bd.sgp1.cdn.digitaloceanspaces.com/uploads/1585541403.jpg"
                       alt=""
                     />
                   </a>
@@ -197,8 +197,8 @@ const News = () => {
                   </a>
                 </p>
                 <p className="mt-4 text-base text-gray-600">
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
+                  In conversation with Fournetsha Bangladesh – the company
+                  behind Bangladesh’s latest original manga magazine
                 </p>
                 <a
                   href="#"
