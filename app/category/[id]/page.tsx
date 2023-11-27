@@ -8,9 +8,7 @@ const ServicesUnderCategoryPage = ({ params }: { params: any }) => {
   const [servicesUnderCategory, setServicesUnderCategory] = useState<any>();
   const { id } = params;
   useEffect(() => {
-    fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/category/${id}`
-    )
+    fetch(`http://localhost:5000/api/v1/services/category/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setServicesUnderCategory(data?.data);

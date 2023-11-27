@@ -26,7 +26,7 @@ const EditServicepage = ({ params }: { params: any }) => {
   });
   useEffect(() => {
     fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`
+      `http://localhost:5000/api/v1/services/${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -67,7 +67,7 @@ const EditServicepage = ({ params }: { params: any }) => {
           };
 
           fetch(
-            `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`,
+            `http://localhost:5000/api/v1/services/${id}`,
             {
               method: "PATCH",
               headers: {

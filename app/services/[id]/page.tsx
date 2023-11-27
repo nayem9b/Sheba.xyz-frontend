@@ -20,17 +20,13 @@ const SingleServicePage = ({ params }: { params: any }) => {
   const [reviews, setReviews] = useState<any>();
 
   useEffect(() => {
-    fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/services/${id}`
-    )
+    fetch(`http://localhost:5000/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setServiceInfo(data.data);
       });
-    fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/reviews/${id}`
-    )
+    fetch(`http://localhost:5000/api/v1/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);
@@ -42,16 +38,13 @@ const SingleServicePage = ({ params }: { params: any }) => {
     servicesId: id,
   };
   const handleAddToCart = async () => {
-    fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/add-to-cart`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(sendCartInfo),
-      }
-    )
+    fetch(`http://localhost:5000/api/v1/add-to-cart`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(sendCartInfo),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -73,7 +66,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
       userId: user?.id,
     };
     console.log(SendReviewInfo);
-    fetch(`https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/review`, {
+    fetch(`http://localhost:5000/api/v1/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

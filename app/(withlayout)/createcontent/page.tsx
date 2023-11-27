@@ -35,16 +35,13 @@ const CreateContentpage = () => {
             image: imgData.data.url,
           };
 
-          fetch(
-            `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/content`,
-            {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify(contentSendData),
-            }
-          )
+          fetch(`http://localhost:5000/api/v1/content`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(contentSendData),
+          })
             .then((res) => res.json())
             .then((data) => {
               if (data.data) {

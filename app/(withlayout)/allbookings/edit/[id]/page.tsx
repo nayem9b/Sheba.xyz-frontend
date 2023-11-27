@@ -29,9 +29,7 @@ const EditBookingPage = ({ params }: IDProps) => {
   const { id } = params;
 
   useEffect(() => {
-    fetch(
-      `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/bookings/${id}`
-    )
+    fetch(`http://localhost:5000/api/v1/bookings/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBookingData(data);
@@ -64,16 +62,13 @@ const EditBookingPage = ({ params }: IDProps) => {
     message.loading("Updating.....");
     try {
       console.log(sendUpdateBookingData);
-      fetch(
-        `https://sheba-backend-5gd0cndez-nayem9b.vercel.app/api/v1/bookings/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(sendUpdateBookingData),
-        }
-      )
+      fetch(`http://localhost:5000/api/v1/bookings/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(sendUpdateBookingData),
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
