@@ -1,6 +1,4 @@
 "use client";
-
-import { useAddToCartMutation } from "@/redux/api/cartApi";
 import { useUser } from "@clerk/nextjs";
 import { Button, Rate, message } from "antd";
 import React, { useEffect, useState } from "react";
@@ -9,22 +7,35 @@ import Link from "next/link";
 import { CreditCardOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import ReviewCard from "@/components/ui/reviewCard";
 import ServiceFAQ from "@/components/ui/ServiceFAQ";
+import { useAllBookingsQuery } from "@/redux/api/bookingApi";
+import { useAllReviewsQuery } from "@/redux/api/reviewsApi";
 
 const SingleServicePage = ({ params }: { params: any }) => {
+  const { data: allReviewsArray } = useAllReviewsQuery();
+  const { data: allBookingsArray } = useAllBookingsQuery();
   const { TextArea } = Input;
   const { id } = params;
   const { isLoaded, isSignedIn, user } = useUser();
-  console.log(user);
+
   const [serviceInfo, setServiceInfo] = useState<any>();
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [value, setValue] = useState(3);
   const [reviews, setReviews] = useState<any>();
-
+  const allReviews = allReviewsArray?.data;
+  const allBookings = allBookingsArray?.data;
+  const bookingResult = allBookings?.filter(
+    (booking: any) =>
+      booking.userId === user?.id && booking?.servicesId === serviceInfo?.id
+  );
+  const reviewResult = allReviews?.filter(
+    (review: any) =>
+      review.userId === user?.id && review?.servicesId === serviceInfo?.id
+  );
+  console.log("reviewResult", reviewResult);
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setServiceInfo(data.data);
       });
     fetch(`http://localhost:5000/api/v1/reviews/${id}`)
@@ -148,45 +159,55 @@ const SingleServicePage = ({ params }: { params: any }) => {
           </div>
         </section>
         <ServiceFAQ />
-        <h1 className="text-center mb-10">
-          We will be happy to have your review
-        </h1>
-        <form className="w-3/6 mx-auto " onSubmit={handlePostReview}>
-          <span>
-            <Rate
-              tooltips={desc}
-              onChange={setValue}
-              value={value}
-              className="mx-auto justify-center place-items-center text-4xl"
-            />
-            {value ? (
-              <span className="ant-rate-text">{desc[value - 1]}</span>
-            ) : (
-              ""
-            )}
-          </span>
-          <TextArea rows={4} name="review" />
-          <Button
-            htmlType="submit"
-            type="primary"
-            className="flex justify-end mt-5"
-          >
-            Submit
-          </Button>
-        </form>
+        {bookingResult?.length > 0 && reviewResult?.length === 0 && (
+          <div>
+            <h1 className="text-center mb-10">
+              We will be happy to have your review
+            </h1>
+            <form className="w-3/6 mx-auto " onSubmit={handlePostReview}>
+              <span>
+                <Rate
+                  tooltips={desc}
+                  onChange={setValue}
+                  value={value}
+                  className="mx-auto justify-center place-items-center text-4xl"
+                />
+                {value ? (
+                  <span className="ant-rate-text">{desc[value - 1]}</span>
+                ) : (
+                  ""
+                )}
+              </span>
+              <TextArea rows={4} name="review" />
+              <Button
+                htmlType="submit"
+                type="primary"
+                className="flex justify-end mt-5"
+              >
+                Submit
+              </Button>
+            </form>
+          </div>
+        )}
 
         <div className=" mx-auto prose">
           <section className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
-              <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
-                Reviews ✨
-              </h1>
-              <div className="grid grid-cols-3 gap-5">
-                {reviews?.map((review: any) => (
-                  <ReviewCard review={review} key={review?.id}></ReviewCard>
-                ))}
+            {reviews?.length > 0 ? (
+              <div>
+                <div className="container px-5 py-24 mx-auto">
+                  <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
+                    Reviews ✨
+                  </h1>
+                  <div className="grid grid-cols-3 gap-5">
+                    {reviews?.map((review: any) => (
+                      <ReviewCard review={review} key={review?.id}></ReviewCard>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div></div>
+            )}
           </section>
         </div>
       </article>
