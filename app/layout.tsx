@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-
+// import MessengerCustomerChat from "react-messenger-customer-chat";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

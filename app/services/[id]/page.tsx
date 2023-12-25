@@ -8,6 +8,7 @@ import { Input } from "antd";
 import Link from "next/link";
 import { CreditCardOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import ReviewCard from "@/components/ui/reviewCard";
+import ServiceFAQ from "@/components/ui/ServiceFAQ";
 
 const SingleServicePage = ({ params }: { params: any }) => {
   const { TextArea } = Input;
@@ -146,6 +147,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
             </div>
           </div>
         </section>
+        <ServiceFAQ />
         <h1 className="text-center mb-10">
           We will be happy to have your review
         </h1>
