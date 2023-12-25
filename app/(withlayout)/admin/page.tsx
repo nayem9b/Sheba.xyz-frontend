@@ -7,7 +7,13 @@ import { useOrganizationList } from "@clerk/nextjs";
 import { useAllUsersQuery } from "@/redux/api/userApi";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
 import { useServicesQuery } from "@/redux/api/servicesApi";
-import { useAllBookingsQuery } from "@/redux/api/bookingApi";
+import {
+  useAllBookingsQuery,
+  useCanceledBookingsQuery,
+  useDeliveredBookingsQuery,
+  usePendingBookingsQuery,
+  useRejectedBookingsQuery,
+} from "@/redux/api/bookingApi";
 const AdminDashboardPage = () => {
   const router = useRouter();
   const { organizationList, isLoaded, setActive } = useOrganizationList();
@@ -37,6 +43,10 @@ const AdminDashboardPage = () => {
   const { data: allCategory } = useCategoriesQuery();
   const { data: allServices } = useServicesQuery();
   const { data: allBookings } = useAllBookingsQuery();
+  const { data: rejectedBookings } = useRejectedBookingsQuery();
+  const { data: pendingBookings } = usePendingBookingsQuery();
+  const { data: canceledBookings } = useCanceledBookingsQuery();
+  const { data: deliveredBookings } = useDeliveredBookingsQuery();
 
   return (
     <div>
@@ -78,6 +88,54 @@ const AdminDashboardPage = () => {
           <div className="mt-2 text-center text-black font-semibold">
             <p>All Bookings</p>
             <p className="font-medium mx-auto "> {allBookings?.data?.length}</p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>Pending Bookings</p>
+            <p className="font-medium mx-auto ">
+              {" "}
+              {pendingBookings?.data?.length}
+            </p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>Delivered Bookings</p>
+            <p className="font-medium mx-auto ">
+              {" "}
+              {deliveredBookings?.data?.length}
+            </p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>Canceled Bookings</p>
+            <p className="font-medium mx-auto ">
+              {" "}
+              {canceledBookings?.data?.length}
+            </p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>Rejected Bookings</p>
+            <p className="font-medium mx-auto ">
+              {" "}
+              {rejectedBookings?.data?.length}
+            </p>
           </div>
         </div>
       </div>

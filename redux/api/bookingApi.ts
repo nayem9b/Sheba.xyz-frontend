@@ -20,6 +20,38 @@ export const bookingApi: any = baseApi.injectEndpoints({
       providesTags: [tagTypes.booking],
     }),
 
+    pendingBookings: build.query({
+      query: () => ({
+        url: "/pendingbookings",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.booking],
+    }),
+
+    deliveredBookings: build.query({
+      query: () => ({
+        url: "/deliveredbookings",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.booking],
+    }),
+
+    canceledBookings: build.query({
+      query: () => ({
+        url: "/canceledbookings",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.booking],
+    }),
+
+    rejectedBookings: build.query({
+      query: () => ({
+        url: "/rejectedbookings",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.booking],
+    }),
+
     bookingsByUserId: build.query({
       query: (userId: string) => ({
         url: `/mybooking/${userId}`,
@@ -57,6 +89,10 @@ export const bookingApi: any = baseApi.injectEndpoints({
 
 export const {
   useAllBookingsQuery,
+  usePendingBookingsQuery,
+  useRejectedBookingsQuery,
+  useCanceledBookingsQuery,
+  useDeliveredBookingsQuery,
   useSingleBookingQuery,
   useCreateBookingMutation,
   useBookingsByUserIdQuery,
