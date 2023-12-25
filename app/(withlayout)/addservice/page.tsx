@@ -151,7 +151,7 @@ const AddService = () => {
         if (imgData) {
           const addServiceSendData = {
             name: name,
-            price: price,
+            price: price as number,
             details: details,
             image: imgData.data.url,
             categoryId: selectData,

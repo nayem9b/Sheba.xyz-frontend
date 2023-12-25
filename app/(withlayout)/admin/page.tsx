@@ -48,21 +48,17 @@ const AdminDashboardPage = () => {
   const { data: canceledBookings } = useCanceledBookingsQuery();
   const { data: deliveredBookings } = useDeliveredBookingsQuery();
 
+  console.log(allBookings);
+
   return (
     <div>
-      <h1 className="text-center text-blue-500 text-4xl">
-        You are at Admin Dashboard
-      </h1>
+      <h1 className="text-center text-blue-500 text-4xl">Sheba Matrics</h1>
       <div className="grid grid-cols-4">
-        <div
-          style={{ textDecoration: "none" }}
-          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
-        >
-          <div className="mt-2 text-center text-black font-semibold">
-            <p>All Users</p>
-            <p className="font-medium mx-auto "> {allUsers?.data?.length} </p>
-          </div>
+        <div className="mt-2 text-center text-black font-semibold bg-red-500 rounded-3xl border-slate-950 border-4">
+          <p className="">All Users</p>
+          <p className="font-medium mx-auto "> {allUsers?.data?.length} </p>
         </div>
+
         <div
           style={{ textDecoration: "none" }}
           className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
