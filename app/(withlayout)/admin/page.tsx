@@ -4,6 +4,10 @@ import { message } from "antd";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useOrganizationList } from "@clerk/nextjs";
+import { useAllUsersQuery } from "@/redux/api/userApi";
+import { useCategoriesQuery } from "@/redux/api/categoryApi";
+import { useServicesQuery } from "@/redux/api/servicesApi";
+import { useAllBookingsQuery } from "@/redux/api/bookingApi";
 const AdminDashboardPage = () => {
   const router = useRouter();
   const { organizationList, isLoaded, setActive } = useOrganizationList();
@@ -25,9 +29,58 @@ const AdminDashboardPage = () => {
       }
     }
   }, [isLoaded, organizationList, router]);
+
+  const { data: allUsers, isLoading } = useAllUsersQuery({
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
+  const { data: allCategory } = useCategoriesQuery();
+  const { data: allServices } = useServicesQuery();
+  const { data: allBookings } = useAllBookingsQuery();
+
   return (
     <div>
-      <h1>You are at Admin Dashboard</h1>
+      <h1 className="text-center text-blue-500 text-4xl">
+        You are at Admin Dashboard
+      </h1>
+      <div className="grid grid-cols-4">
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>All Users</p>
+            <p className="font-medium mx-auto "> {allUsers?.data?.length} </p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>All Categories</p>
+            <p className="font-medium mx-auto "> {allCategory?.data?.length}</p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>All Services</p>
+            <p className="font-medium mx-auto "> {allServices?.data?.length}</p>
+          </div>
+        </div>
+        <div
+          style={{ textDecoration: "none" }}
+          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        >
+          <div className="mt-2 text-center text-black font-semibold">
+            <p>All Bookings</p>
+            <p className="font-medium mx-auto "> {allBookings?.data?.length}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

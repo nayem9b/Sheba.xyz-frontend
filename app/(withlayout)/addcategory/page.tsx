@@ -1,7 +1,7 @@
 "use client";
 
 import { usePostCategoryMutation } from "@/redux/api/categoryApi";
-import { message } from "antd";
+import { Button, message } from "antd";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 
@@ -58,7 +58,9 @@ const AddCategorypage = () => {
     <div>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Create a category</h1>
+          <h1 className="text-4xl text-blue-500 sm:text-3xl">
+            Create a category
+          </h1>
         </div>
 
         <form
@@ -66,23 +68,20 @@ const AddCategorypage = () => {
           className="mx-auto mb-0 mt-8 max-w-md space-y-4"
         >
           <div>
-            <label htmlFor="email" className="sr-only">
+            <label
+              htmlFor="category_name"
+              className="block text-sm text-gray-800 mb-2"
+            >
               Category Name
             </label>
 
-            <div className="relative">
-              <input
-                type="name"
-                name="name"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="example: Car Wash"
-              />
-            </div>
+            <input
+              type="name"
+              name="name"
+              className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+            />
           </div>
-          <label
-            htmlFor="image"
-            className="block text-sm text-gray-500 dark:text-gray-300"
-          >
+          <label htmlFor="image" className="block text-sm text-gray-800 mb-2">
             Image
           </label>
 
@@ -98,6 +97,9 @@ const AddCategorypage = () => {
             <button className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white cursor-pointer">
               Create
             </button>
+            <Button type="primary" className="px-5 my-3 text-center">
+              Create
+            </Button>
           </div>
         </form>
       </div>
