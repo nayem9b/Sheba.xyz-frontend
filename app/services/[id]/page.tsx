@@ -9,6 +9,7 @@ import ReviewCard from "@/components/ui/reviewCard";
 import ServiceFAQ from "@/components/ui/ServiceFAQ";
 import { useAllBookingsQuery } from "@/redux/api/bookingApi";
 import { useAllReviewsQuery } from "@/redux/api/reviewsApi";
+import WhyUs from "@/components/ui/WhyUs";
 
 const SingleServicePage = ({ params }: { params: any }) => {
   const { data: allReviewsArray } = useAllReviewsQuery();
@@ -159,6 +160,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
           </div>
         </section>
         <ServiceFAQ />
+        <WhyUs />
         {bookingResult?.length > 0 && reviewResult?.length === 0 && (
           <div>
             <h1 className="text-center mb-10">

@@ -7,6 +7,8 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Select, message } from "antd";
 import Link from "next/link";
 import React, { useState } from "react";
+import * as yup from "yup";
+import { serviceSchema } from "@/schemas/service";
 
 const allServices = () => {
   const [selectData, setSelectData] = useState();
@@ -25,7 +27,8 @@ const allServices = () => {
     e.preventDefault();
     const form = e.target;
     const name = form?.name.value;
-    const price = form?.price.value;
+    const price = form?.price?.value;
+    console.log("price", price);
     const details = form?.details.value;
     const status = form?.status?.value;
     console.log(selectData);
@@ -33,6 +36,7 @@ const allServices = () => {
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=4879859cdc7827193ef39d9fcfdd7c52`;
+
 
     fetch(url, {
       method: "POST",
@@ -45,7 +49,7 @@ const allServices = () => {
         if (imgData) {
           const addServiceSendData = {
             name: name,
-            price: price,
+            price: parseInt(price),
             details: details,
             image: imgData.data.url,
             categoryId: selectData,
@@ -134,10 +138,13 @@ const allServices = () => {
               </div>
             </div>
 
-            <div className="flex flex-row-reverse mt-10">
+            <div className="flex justify-center text-center mt-10">
               <Button
                 htmlType="submit"
-                className="rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white cursor-pointer"
+                type="primary"
+                // className="rounded-lg bg-blue-500  text-sm font-medium text-white cursor-pointer
+                value="large"
+                size="large"
               >
                 Submit
               </Button>
