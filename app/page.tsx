@@ -20,10 +20,14 @@ import FeedbackForm from "@/components/ui/FeedbackForm";
 import CallToAction from "@/components/ui/CallToAction";
 import FAQ from "@/components/ui/FAQ";
 import UpcomingServiceCard from "@/components/ui/UpcomingServiceCard";
+import emi from "../Assets/EMI.png";
+import Image from "next/image";
+import { Modal } from "antd";
+import emiDetails from "../Assets/emi details.png";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
-
+  const [modal2Open, setModal2Open] = useState(false);
   const { data: categoryData } = useCategoriesQuery({
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
@@ -80,6 +84,21 @@ export default function Home() {
   return (
     <>
       <Homepage />
+      <Modal
+        centered
+        open={modal2Open}
+        width={1000}
+        onOk={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+      >
+        <Image src={emiDetails} alt=""></Image>
+      </Modal>
+      <Image
+        onClick={() => setModal2Open(true)}
+        src={emi}
+        alt="emi"
+        className="w-3/5 mx-auto justify-center items-center flex h-28 rounded-xl cursor-pointer"
+      ></Image>
       <h1 className="text-center my-20">All Categories</h1>
       <div className="grid lg:grid-cols-8 sm:grid-cols-4 md:grid-cols-6 gap-10 lg:mx-60">
         {categoryData?.data?.map((category: any) => (
