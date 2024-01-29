@@ -25,9 +25,7 @@ const EditServicepage = ({ params }: { params: any }) => {
     };
   });
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/api/v1/services/${id}`
-    )
+    fetch(`http://localhost:3333/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -66,16 +64,13 @@ const EditServicepage = ({ params }: { params: any }) => {
             rating: "5",
           };
 
-          fetch(
-            `http://localhost:5000/api/v1/services/${id}`,
-            {
-              method: "PATCH",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify(addServiceSendData),
-            }
-          )
+          fetch(`http://localhost:3333/api/v1/services/${id}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(addServiceSendData),
+          })
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

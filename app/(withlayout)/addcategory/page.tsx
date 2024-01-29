@@ -57,7 +57,7 @@ const AddCategorypage = () => {
             image: imgData.data.url,
           };
 
-          fetch(`http://localhost:5000/api/v1/categories`, {
+          fetch(`http://localhost:3333/api/v1/categories`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -84,21 +84,21 @@ const AddCategorypage = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-    const handleChange: UploadProps["onChange"] = (
-      info: UploadChangeParam<UploadFile>
-    ) => {
-      if (info.file.status === "uploading") {
-        setLoading(true);
-        return;
-      }
-      if (info.file.status === "done") {
-        // Get this url from response in real world.
-        getBase64(info.file.originFileObj as RcFile, (url) => {
-          setLoading(false);
-          setImageUrl(url);
-        });
-      }
-    };
+  const handleChange: UploadProps["onChange"] = (
+    info: UploadChangeParam<UploadFile>
+  ) => {
+    if (info.file.status === "uploading") {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj as RcFile, (url) => {
+        setLoading(false);
+        setImageUrl(url);
+      });
+    }
+  };
 
   return (
     <div>
@@ -154,7 +154,7 @@ const AddCategorypage = () => {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="http://localhost:5000/api/v1/"
+        action="http://localhost:3333/api/v1/"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >

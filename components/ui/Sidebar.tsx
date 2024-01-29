@@ -15,7 +15,7 @@ const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/users/${user?.id}`)
+    fetch(`http://localhost:3333/api/v1/users/${user?.id}`)
       .then((res) => res.json())
       .then((data) => {
         setDbUserRole(data?.data?.role);

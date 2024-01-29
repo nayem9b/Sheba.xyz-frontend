@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const News = () => {
@@ -11,51 +12,9 @@ const News = () => {
                 Latest from blog
               </h2>
               <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600 lg:mx-0">
-                In conversation with Fournetsha Bangladesh – the company behind
-                Bangladesh’s latest original manga magazine
+                Latest news of Home Sync Bangladesh – the company behind
+                Bangladesh’s latest original home service
               </p>
-            </div>
-
-            <div className="hidden lg:flex lg:items-center lg:space-x-3">
-              <button
-                type="button"
-                className="flex items-center justify-center text-gray-400 transition-all duration-200 bg-transparent border border-gray-300 rounded w-9 h-9 hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-
-              <button
-                type="button"
-                className="flex items-center justify-center text-gray-400 transition-all duration-200 bg-transparent border border-gray-300 rounded w-9 h-9 hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
 
@@ -68,6 +27,7 @@ const News = () => {
                       className="object-cover w-full h-full"
                       src="https://www.unicef.org/bangladesh/sites/unicef.org.bangladesh/files/styles/press_release_feature/public/Social%20Work%20Campaign.png?itok=7uGQb3wA"
                       alt=""
+                      className="w-full h-60"
                     />
                   </a>
 
@@ -83,14 +43,14 @@ const News = () => {
                   March 21, 2020{" "}
                 </span>
                 <p className="mt-5 text-2xl font-semibold">
-                  <a href="#" title="" className="text-black">
+                  <Link href="#" title="" className="text-black no-underline">
                     {" "}
-                    How to build coffee inside your home in 5 minutes.{" "}
-                  </a>
+                    How Home Sync is changing commiunities in rural areas.
+                  </Link>
                 </p>
                 <p className="mt-4 text-base text-gray-600">
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
+                  In conversation with Home Sync Bangladesh – the company behind
+                  Bangladesh’s latest original home service
                 </p>
                 <a
                   href="#"
@@ -122,6 +82,7 @@ const News = () => {
                       className="object-cover w-full h-full"
                       src="https://pathao.com/wp-content/uploads/2019/08/SameDay-Delivery_Blog-1024x536.png"
                       alt=""
+                      className="w-full h-60"
                     />
                   </a>
 
@@ -137,14 +98,14 @@ const News = () => {
                   April 04, 2020{" "}
                 </span>
                 <p className="mt-5 text-2xl font-semibold">
-                  <a href="#" title="" className="text-black">
+                  <Link href="#" title="" className="text-black no-underline">
                     {" "}
-                    Ho7 Tips to run your remote team faster and better.{" "}
-                  </a>
+                    How do we beat the time to get your service faster?
+                  </Link>
                 </p>
                 <p className="mt-4 text-base text-gray-600">
-                  In conversation with Fournetsha Bangladesh – the company
-                  behind Bangladesh’s latest original manga magazine
+                  In conversation with Home Sync Bangladesh – the company behind
+                  Bangladesh’s latest original home service
                 </p>
                 <a
                   href="#"
@@ -176,6 +137,7 @@ const News = () => {
                       className="object-cover w-full h-full"
                       src="https://tfe-bd.sgp1.cdn.digitaloceanspaces.com/uploads/1585541403.jpg"
                       alt=""
+                      className="w-full h-60"
                     />
                   </a>
 
@@ -191,14 +153,14 @@ const News = () => {
                   May 12, 2020{" "}
                 </span>
                 <p className="mt-5 text-2xl font-semibold">
-                  <a href="#" title="" className="text-black">
+                  <Link href="#" title="" className="text-black no-underline">
                     {" "}
-                    5 Productivity tips to write faster at morning.{" "}
-                  </a>
+                    Want to work with us as a delivary partner?{" "}
+                  </Link>
                 </p>
                 <p className="mt-4 text-base text-gray-600">
-                  In conversation with Fournetsha Bangladesh – the company
-                  behind Bangladesh’s latest original manga magazine
+                  In conversation with Home Sync Bangladesh – the company behind
+                  Bangladesh’s latest original home service
                 </p>
                 <a
                   href="#"

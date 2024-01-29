@@ -37,7 +37,6 @@ const allServices = () => {
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=4879859cdc7827193ef39d9fcfdd7c52`;
 
-
     fetch(url, {
       method: "POST",
       body: formData,
@@ -59,7 +58,7 @@ const allServices = () => {
 
           console.log(addServiceSendData);
 
-          fetch(`http://localhost:5000/api/v1/create-service`, {
+          fetch(`http://localhost:3333/api/v1/create-service`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

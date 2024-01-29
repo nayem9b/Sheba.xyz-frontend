@@ -34,12 +34,12 @@ const SingleServicePage = ({ params }: { params: any }) => {
   );
   console.log("reviewResult", reviewResult);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/services/${id}`)
+    fetch(`http://localhost:3333/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setServiceInfo(data.data);
       });
-    fetch(`http://localhost:5000/api/v1/reviews/${id}`)
+    fetch(`http://localhost:3333/api/v1/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);
@@ -51,7 +51,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
     servicesId: id,
   };
   const handleAddToCart = async () => {
-    fetch(`http://localhost:5000/api/v1/add-to-cart`, {
+    fetch(`http://localhost:3333/api/v1/add-to-cart`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -79,7 +79,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
       userId: user?.id,
     };
     console.log(SendReviewInfo);
-    fetch(`http://localhost:5000/api/v1/review`, {
+    fetch(`http://localhost:3333/api/v1/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
