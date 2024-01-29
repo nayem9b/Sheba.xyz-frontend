@@ -11,9 +11,9 @@ const Navbar = () => {
   const userRole = checkUserRole(session);
 
   return (
-    <div>
-      <header className="bg-[#FCF8F1] bg-opacity-30">
-        <div className="px-4 mx-auto sm:px-6 lg:px-8">
+    <div className="">
+      <header className="bg-white fixed top-0 w-full shadow-sm rounded-full">
+        <div className="px-4 mx-auto sm:px-6 lg:px-8 ">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex-shrink-0">
               <Link href="/" title="" className="flex">
@@ -65,7 +65,7 @@ const Navbar = () => {
               <Link
                 href="/"
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
               >
                 {" "}
                 Home
@@ -74,7 +74,7 @@ const Navbar = () => {
               <Link
                 href="/allcategories"
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
               >
                 {" "}
                 Categories
@@ -82,7 +82,7 @@ const Navbar = () => {
               <Link
                 href="/allservices"
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
               >
                 {" "}
                 Services
@@ -91,7 +91,7 @@ const Navbar = () => {
               <Link
                 href="/allcontents"
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
               >
                 {" "}
                 Blogs{" "}
@@ -99,7 +99,7 @@ const Navbar = () => {
               <Link
                 href="/#faq"
                 title=""
-                className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
               >
                 {" "}
                 FAQ
@@ -112,7 +112,7 @@ const Navbar = () => {
                   <Link
                     href="/admin"
                     title=""
-                    className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                    className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
                   >
                     Dashboard
                   </Link>
@@ -120,14 +120,14 @@ const Navbar = () => {
                 <Link
                   href="/mycart"
                   title=""
-                  className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                  className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
                 >
                   My Cart
                 </Link>
                 <Link
                   href="/account"
                   title=""
-                  className="text-base text-black transition-all duration-200 hover:text-opacity-80"
+                  className="text-base text-black transition-all duration-200 hover:text-opacity-80 no-underline"
                 >
                   Profile
                 </Link>

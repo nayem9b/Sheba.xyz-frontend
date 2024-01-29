@@ -16,7 +16,7 @@ const Homepage = () => {
   console.log(categoryData);
   return (
     <div>
-      <div className="relative">
+      <div className="mt-20">
         <Image
           src={banner}
           alt="banner"
