@@ -39,31 +39,32 @@ const FeedbackForm = () => {
               </p>
 
               <div className="mt-8">
-                <a href="" className="text-2xl font-bold text-pink-600">
-                  0151 475 4450
+                <a
+                  href=""
+                  className="text-2xl font-bold text-pink-600 no-underline"
+                >
+                  +8801755299400
                 </a>
 
                 <address className="mt-2 not-italic">
-                  282 Kevin Brook, Imogeneborough, CA 58517
+                  Dinajpur, Bangladesh
                 </address>
               </div>
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
               <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="sr-only" htmlFor="email">
-                      Email
-                    </label>
-                    <input
-                      className="w-full rounded-lg border-gray-200 p-3 text-sm"
-                      placeholder="Email address"
-                      type="email"
-                      id="email"
-                      name="email"
-                    />
-                  </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    className="w-full rounded-lg border-gray-200 p-3 text-sm"
+                    placeholder="Email address"
+                    type="email"
+                    id="email"
+                    name="email"
+                  />
                 </div>
 
                 <div>
@@ -72,7 +73,7 @@ const FeedbackForm = () => {
                   </label>
 
                   <textarea
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm"
+                    className="w-full h-40 rounded-lg border-gray-200 p-3 text-sm"
                     placeholder="Message"
                     id="message"
                     name="message"
