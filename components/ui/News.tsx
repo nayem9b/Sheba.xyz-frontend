@@ -30,9 +30,8 @@ const News = () => {
                     />
                   </a>
 
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
-                      {" "}
+                  <div className=" top-4 left-4">
+                    <span className=" py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
                       Lifestyle{" "}
                     </span>
                   </div>
@@ -85,8 +84,8 @@ const News = () => {
                     />
                   </a>
 
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
+                  <div className=" top-4 left-4">
+                    <span className=" py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
                       {" "}
                       Marketing{" "}
                     </span>
@@ -140,8 +139,8 @@ const News = () => {
                     />
                   </a>
 
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
+                  <div className=" top-4 left-4">
+                    <span className=" py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
                       {" "}
                       Productivity{" "}
                     </span>

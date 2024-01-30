@@ -10,6 +10,7 @@ import ServiceFAQ from "@/components/ui/ServiceFAQ";
 import { useAllBookingsQuery } from "@/redux/api/bookingApi";
 import { useAllReviewsQuery } from "@/redux/api/reviewsApi";
 import WhyUs from "@/components/ui/WhyUs";
+import HomeSyncBreadCrumb from "@/components/ui/BreadCrumb";
 
 const SingleServicePage = ({ params }: { params: any }) => {
   const { data: allReviewsArray } = useAllReviewsQuery();
@@ -95,13 +96,21 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
+      <HomeSyncBreadCrumb
+        items={[
+          {
+            label: "super_admin",
+            link: "/super_admin",
+          },
+        ]}
+      />
       <article>
         <section className="bg-white ">
-          <div className="relative flex">
+          <div className=" flex">
             <div className="min-h-screen lg:w-1/3"></div>
             <div className="hidden w-3/4 min-h-screen bg-gray-100  lg:block"></div>
 
-            <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:absolute lg:inset-x-0">
+            <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:inset-x-0">
               <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ">
                 Our best of the <br />
                 <span className="text-blue-500">{serviceInfo?.name}</span>{" "}

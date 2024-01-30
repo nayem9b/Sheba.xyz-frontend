@@ -1,5 +1,6 @@
 import React from "react";
-
+import bankinfo from "../../Assets/payment_banner.jpg";
+import Image from "next/image";
 const Footer = () => {
   return (
     <div>
@@ -13,12 +14,20 @@ const Footer = () => {
                   src="https://play-lh.googleusercontent.com/KdD-PttwhTyD3ALaL-pW0t5sjymog-RALwhoxh0ee1K8rXDaIVZvCcw8ToE22UYGNDQ"
                   alt=""
                 />
-                <p className=" font-semibold text-2xl mb-3">Sheba.XYZ</p>
+                <p className=" font-semibold text-2xl">Sheba.XYZ</p>
               </div>
 
-              <p className="text-base leading-relaxed text-gray-600 mt-7">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
+              <p className="text-base leading-relaxed text-gray-600 mt-1">
+                <span className="font-bold">Contact</span> <br />
+                16516 <br /> info@sheba.xyz <br />
+                <span className="text-gray-600 font-bold">
+                  {" "}
+                  Corporate Address
+                </span>{" "}
+                <br />
+                House 454, Road No: 31, Mohakhali DOHS, Dhaka <br />
+                <span className="font-bold">TRADE LICENSE NO</span> <br />
+                TRAD/DNCC/145647/2022
               </p>
             </div>
 
@@ -226,7 +235,7 @@ const Footer = () => {
           </div>
 
           <hr className="mt-16 mb-10 border-gray-200" />
-
+          <Image src={bankinfo} className="h-36" alt=""></Image>
           <div className="sm:flex sm:items-center sm:justify-between">
             <p className="text-sm text-gray-600">
               © Copyright 2023, All Rights Reserved by Sheba.xyz
