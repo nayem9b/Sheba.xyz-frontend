@@ -21,10 +21,9 @@ const News = () => {
           <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
             <div className="overflow-hidden bg-white rounded shadow">
               <div className="p-5">
-                <div className="relative">
-                  <a href="#" title="" className="block aspect-w-4 aspect-h-3">
+                <div className="">
+                  <a href="#" title="" className=" aspect-w-4 aspect-h-3">
                     <img
-                      className="object-cover w-full h-full"
                       src="https://www.unicef.org/bangladesh/sites/unicef.org.bangladesh/files/styles/press_release_feature/public/Social%20Work%20Campaign.png?itok=7uGQb3wA"
                       alt=""
                       className="w-full h-60"
@@ -76,7 +75,7 @@ const News = () => {
 
             <div className="overflow-hidden bg-white rounded shadow">
               <div className="p-5">
-                <div className="relative">
+                <div className="">
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
                       className="object-cover w-full h-full"
@@ -131,7 +130,7 @@ const News = () => {
 
             <div className="overflow-hidden bg-white rounded shadow">
               <div className="p-5">
-                <div className="relative">
+                <div className="">
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
                       className="object-cover w-full h-full"
