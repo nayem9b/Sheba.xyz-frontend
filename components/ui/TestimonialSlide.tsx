@@ -13,11 +13,9 @@ import HappyFaces from "./HappyFaces";
 const TestimonialSlide = () => {
   return (
     <Swiper
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={10}
+      modules={[Navigation]}
       slidesPerView={1}
       navigation
-      pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
@@ -25,8 +23,12 @@ const TestimonialSlide = () => {
       <SwiperSlide>
         <HappyFaces />
       </SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
+      <SwiperSlide>
+        <HappyFaces />
+      </SwiperSlide>
+      <SwiperSlide>
+        <HappyFaces />
+      </SwiperSlide>
       <SwiperSlide>Slide 4</SwiperSlide>
     </Swiper>
   );

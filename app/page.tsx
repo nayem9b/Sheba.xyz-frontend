@@ -26,6 +26,16 @@ import { Modal } from "antd";
 import emiDetails from "../Assets/emi details.png";
 import TestimonialSlide from "@/components/ui/TestimonialSlide";
 import HappyFaces from "@/components/ui/HappyFaces";
+import { Carousel } from "antd";
+const contentStyle: React.CSSProperties = {
+  height: "160px",
+  color: "#fff",
+  lineHeight: "160px",
+  textAlign: "center",
+  background: "#364d79",
+};
+import serviceRequested from "../Assets/service-request.png";
+import girl from "../Assets/girl.jpg";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -124,8 +134,97 @@ export default function Home() {
       <Testimonial />
       <FAQ />
       <News />
-      <HappyFaces />
-      <TestimonialSlide />
+      <div>
+        <p>SOME HAPPY FACES</p>
+        <p>Real Happy Customers, Real Stories</p>
+      </div>
+      <Carousel autoplay>
+        <div style={contentStyle} className="w-1/2 flex justify-center mx-auto">
+          <div className="flex">
+            <div className="inline-block h-[250px] min-h-[1em] w-0.5 self-stretch bg-green-500 opacity-100 dark:opacity-50"></div>
+            <div className="ml-10">
+              <p>
+                Such service platforms are available in other countries. I’ve
+                personally used those when I was abroad. I’m very pleased that
+                such a portal is available here in Bangladesh as well. Thank you
+                Sheba.xyz.
+              </p>
+            </div>
+          </div>
+          <Image
+            src={girl}
+            alt=""
+            className="w-3/5 h-72 object-cover rounded-full"
+          ></Image>
+        </div>
+        <div style={contentStyle} className="w-1/2 flex justify-center mx-auto">
+          <div className="flex">
+            <div className="inline-block h-[250px] min-h-[1em] w-0.5 self-stretch bg-green-500 opacity-100 dark:opacity-50"></div>
+            <div className="ml-10">
+              <p>
+                Such service platforms are available in other countries. I’ve
+                personally used those when I was abroad. I’m very pleased that
+                such a portal is available here in Bangladesh as well. Thank you
+                Sheba.xyz.
+              </p>
+            </div>
+          </div>
+          <Image
+            src={girl}
+            alt=""
+            className="w-3/5 h-72 object-cover rounded-full"
+          ></Image>
+        </div>
+        {/* <div style={contentStyle} className="w-3/4 flex">
+          <div className="">
+            <h1>SOME HAPPY FACES</h1>
+            <h1>Real Happy Customers, Real Stories</h1>
+            <h1>
+              Such service platforms are available in other countries. I’ve
+              personally used those when I was abroad. I’m very pleased that
+              such a portal is available here in Bangladesh as well. Thank you
+              Sheba.xyz.
+            </h1>
+          </div>
+          <Image src={serviceRequested} alt=""></Image>
+        </div>
+        <div style={contentStyle} className="w-3/4 flex">
+          <div className="">
+            <h1>SOME HAPPY FACES</h1>
+            <h1>Real Happy Customers, Real Stories</h1>
+            <h1>
+              Such service platforms are available in other countries. I’ve
+              personally used those when I was abroad. I’m very pleased that
+              such a portal is available here in Bangladesh as well. Thank you
+              Sheba.xyz.
+            </h1>
+          </div>
+          <Image src={serviceRequested} alt=""></Image>
+        </div>
+        <div style={contentStyle} className="w-3/4 flex">
+          <div className="">
+            <h1>SOME HAPPY FACES</h1>
+            <h1>Real Happy Customers, Real Stories</h1>
+            <h1>
+              Such service platforms are available in other countries. I’ve
+              personally used those when I was abroad. I’m very pleased that
+              such a portal is available here in Bangladesh as well. Thank you
+              Sheba.xyz.
+            </h1>
+          </div>
+          <Image src={serviceRequested} alt=""></Image>
+        </div> */}
+        {/* <div>
+          <h3 style={contentStyle}>2</h3>
+        </div>
+        <div>
+          <h3 style={contentStyle}>3</h3>
+        </div>
+        <div>
+          <h3 style={contentStyle}>4</h3>
+        </div> */}
+      </Carousel>
+      {/* <TestimonialSlide /> */}
       <FeedbackForm />
       <CallToAction />
     </>
