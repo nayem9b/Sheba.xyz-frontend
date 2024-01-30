@@ -11,6 +11,8 @@ import { useAllBookingsQuery } from "@/redux/api/bookingApi";
 import { useAllReviewsQuery } from "@/redux/api/reviewsApi";
 import WhyUs from "@/components/ui/WhyUs";
 import HomeSyncBreadCrumb from "@/components/ui/BreadCrumb";
+import Image from "next/image";
+import safety from "../../../Assets/safety-insured.png";
 
 const SingleServicePage = ({ params }: { params: any }) => {
   const { data: allReviewsArray } = useAllReviewsQuery();
@@ -96,14 +98,50 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
-      <HomeSyncBreadCrumb
-        items={[
-          {
-            label: "super_admin",
-            link: "/super_admin",
-          },
-        ]}
-      />
+      <div className="mt-20">
+        <HomeSyncBreadCrumb
+          items={[
+            {
+              label: "super_admin",
+              link: "/super_admin",
+            },
+          ]}
+        />
+      </div>
+      {/* <div className="relative">
+        <img
+          src={serviceInfo?.image}
+          className="w-full h-64 object-cover brightness-50"
+          alt=""
+        />
+        <h1 className="absolute">Hello</h1>
+      </div> */}
+      <div className=" relative">
+        <img
+          src={serviceInfo?.image}
+          alt=""
+          className="w-full h-64 object-cover brightness-50"
+        />
+
+        <div className="absolute bottom-0 px-4 py-3 bg-gray-500/50 w-full">
+          <HomeSyncBreadCrumb
+            items={[
+              {
+                label: "super_admin",
+                link: "/super_admin",
+              },
+            ]}
+          />
+          <h1 className="text-white font-semibold text-4xl">
+            {" "}
+            Kittens are cute{" "}
+          </h1>
+          <Image src={safety} alt="" className="w-36 h-14"></Image>
+          <p className="text-gray-200">
+            I love kittens very much. They are amazing.
+          </p>
+        </div>
+      </div>
       <article>
         <section className="bg-white ">
           <div className=" flex">

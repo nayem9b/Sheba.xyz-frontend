@@ -24,6 +24,8 @@ import emi from "../Assets/EMI.png";
 import Image from "next/image";
 import { Modal } from "antd";
 import emiDetails from "../Assets/emi details.png";
+import TestimonialSlide from "@/components/ui/TestimonialSlide";
+import HappyFaces from "@/components/ui/HappyFaces";
 
 export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -122,6 +124,8 @@ export default function Home() {
       <Testimonial />
       <FAQ />
       <News />
+      <HappyFaces />
+      <TestimonialSlide />
       <FeedbackForm />
       <CallToAction />
     </>
