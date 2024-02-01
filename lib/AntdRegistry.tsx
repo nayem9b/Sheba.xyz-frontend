@@ -17,3 +17,4 @@ const StyledComponentsRegistry = ({ children }: React.PropsWithChildren) => {
 };
 
 export default StyledComponentsRegistry;
+//changed git commit
