@@ -2,7 +2,7 @@
 import Image from "next/image";
 import appimage from "../../Assets/App.png";
 import React from "react";
-
+import qrcode from "../../Assets/qrcode.png";
 const CallToAction = () => {
   return (
     <div>
@@ -24,7 +24,7 @@ const CallToAction = () => {
             <p className="block max-w-2xl mt-4 ">
               Any Service, Any Time, Anywhere.
             </p>
-
+            <Image src={qrcode} alt="" className="w-52 h-52"></Image>
             <div className="mt-6 sm:-mx-2">
               <a
                 href="#"
