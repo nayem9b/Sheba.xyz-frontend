@@ -51,7 +51,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
   const [reviews, setReviews] = useState<any>();
   const allReviews = allReviewsArray?.data;
   const allBookings = allBookingsArray?.data;
-  const serviceLowercase = serviceInfo?.name.toLowerCase();
+
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -128,7 +128,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
-      <Layout>
+      <Layout className=" px-16">
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
@@ -139,48 +139,23 @@ const SingleServicePage = ({ params }: { params: any }) => {
             console.log(collapsed, type);
           }}
           style={{
-            overflow: "auto",
+            // overflow: "auto",
             position: "fixed",
             right: 0,
           }}
-          className="mt-52 z-30 mr-10"
+          className="mt-52 z-30 mr-32 rounded-3xl w-96 h-96 "
         >
-          <div className="demo-logo-vertical" />
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={["4"]}
-            items={items}
-          />
+          <div className="">
+          
+            <Menu
+              mode="inline"
+              className=" py-20 rounded-2xl w-[900px] bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 mr-10 h-96 "
+              defaultSelectedKeys={["4"]}
+              items={items}
+            />
+          </div>
         </Sider>
-        {/* <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
-          <Content style={{ margin: "24px 16px 0" }}>
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              content
-            </div>
-          </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Ant Design ©{new Date().getFullYear()} Created by Ant UED
-          </Footer>
-        </Layout> */}
       </Layout>
-
-      {/* <div className="relative">
-        <img
-          src={serviceInfo?.image}
-          className="w-full h-64 object-cover brightness-50"
-          alt=""
-        />
-        <h1 className="absolute">Hello</h1>
-      </div> */}
       <div className="relative mt-20">
         <img
           src={serviceInfo?.image}
