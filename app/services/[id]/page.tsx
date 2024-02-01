@@ -4,7 +4,13 @@ import { Button, Rate, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Input } from "antd";
 import Link from "next/link";
-import { CreditCardOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  CreditCardOutlined,
+  ShoppingCartOutlined,
+  StarFilled,
+  StarOutlined,
+} from "@ant-design/icons";
 import ReviewCard from "@/components/ui/reviewCard";
 import ServiceFAQ from "@/components/ui/ServiceFAQ";
 import { useAllBookingsQuery } from "@/redux/api/bookingApi";
@@ -13,6 +19,25 @@ import WhyUs from "@/components/ui/WhyUs";
 import HomeSyncBreadCrumb from "@/components/ui/BreadCrumb";
 import Image from "next/image";
 import safety from "../../../Assets/safety-insured.png";
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
+import { Layout, Menu, theme } from "antd";
+
+const { Header, Content, Footer, Sider } = Layout;
+
+const items = [
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  UserOutlined,
+].map((icon, index) => ({
+  key: String(index + 1),
+  icon: React.createElement(icon),
+  label: `nav ${index + 1}`,
+}));
 
 const SingleServicePage = ({ params }: { params: any }) => {
   const { data: allReviewsArray } = useAllReviewsQuery();
@@ -20,13 +45,18 @@ const SingleServicePage = ({ params }: { params: any }) => {
   const { TextArea } = Input;
   const { id } = params;
   const { isLoaded, isSignedIn, user } = useUser();
-
   const [serviceInfo, setServiceInfo] = useState<any>();
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [value, setValue] = useState(3);
   const [reviews, setReviews] = useState<any>();
   const allReviews = allReviewsArray?.data;
   const allBookings = allBookingsArray?.data;
+  const serviceLowercase = serviceInfo?.name.toLowerCase();
+
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   const bookingResult = allBookings?.filter(
     (booking: any) =>
       booking.userId === user?.id && booking?.servicesId === serviceInfo?.id
@@ -98,16 +128,51 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
-      <div className="mt-20">
-        <HomeSyncBreadCrumb
-          items={[
-            {
-              label: "super_admin",
-              link: "/super_admin",
-            },
-          ]}
-        />
-      </div>
+      <Layout>
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+          onBreakpoint={(broken) => {
+            console.log(broken);
+          }}
+          onCollapse={(collapsed, type) => {
+            console.log(collapsed, type);
+          }}
+          style={{
+            overflow: "auto",
+            position: "fixed",
+            right: 0,
+          }}
+          className="mt-52 z-30 mr-10"
+        >
+          <div className="demo-logo-vertical" />
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["4"]}
+            items={items}
+          />
+        </Sider>
+        {/* <Layout>
+          <Header style={{ padding: 0, background: colorBgContainer }} />
+          <Content style={{ margin: "24px 16px 0" }}>
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}
+            >
+              content
+            </div>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          </Footer>
+        </Layout> */}
+      </Layout>
+
       {/* <div className="relative">
         <img
           src={serviceInfo?.image}
@@ -116,38 +181,58 @@ const SingleServicePage = ({ params }: { params: any }) => {
         />
         <h1 className="absolute">Hello</h1>
       </div> */}
-      <div className=" relative">
+      <div className="relative mt-20">
         <img
           src={serviceInfo?.image}
           alt=""
-          className="w-full h-64 object-cover brightness-50"
+          className="w-full h-80 object-cover brightness-50 z-10"
         />
 
-        <div className="absolute bottom-0 px-4 py-3 bg-gray-500/50 w-full">
-          <HomeSyncBreadCrumb
-            items={[
-              {
-                label: "super_admin",
-                link: "/super_admin",
-              },
-            ]}
-          />
-          <h1 className="text-white font-semibold text-4xl">
-            {" "}
-            Kittens are cute{" "}
-          </h1>
-          <Image src={safety} alt="" className="w-36 h-14"></Image>
-          <p className="text-gray-200">
-            I love kittens very much. They are amazing.
-          </p>
+        <div className="absolute bottom-0 px-4 py-3  w-full">
+          <div className="w-4/6 mx-auto">
+            <HomeSyncBreadCrumb
+              items={[
+                {
+                  label: "services",
+                  link: "/allservices",
+                },
+                {
+                  label: serviceInfo?.name.toLowerCase(),
+                  link: "/allservices",
+                },
+              ]}
+            />
+            <div className="flex">
+              <h1 className="text-white font-semibold text-4xl">
+                {" "}
+                {serviceInfo?.name} Services
+              </h1>
+              <Image src={safety} alt="" className="w-28 h-8 mt-7 ml-2"></Image>
+            </div>
+            <div className="">
+              <p className="px-2 py-1 rounded-md w-28 bg-green-600 text-white">
+                <StarFilled />{" "}
+                <span className="text-xl font-bold">{serviceInfo?.rating}</span>{" "}
+                out of 5
+              </p>
+            </div>
+            <p className="text-white text-xs">(8318 ratings on 3 services)</p>
+            <div className="text-sm font-semibold">
+              <p className="text-gray-200">
+                <CheckCircleOutlined /> On Time Work Completion
+              </p>
+              <p className="text-gray-200">
+                <CheckCircleOutlined className="" /> Trusted and Experienced
+                Plumbers
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <article>
         <section className="bg-white ">
           <div className=" flex">
             <div className="min-h-screen lg:w-1/3"></div>
-            <div className="hidden w-3/4 min-h-screen bg-gray-100  lg:block"></div>
-
             <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:inset-x-0">
               <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl ">
                 Our best of the <br />

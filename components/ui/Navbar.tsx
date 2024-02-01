@@ -11,8 +11,8 @@ const Navbar = () => {
   const userRole = checkUserRole(session);
 
   return (
-    <div className="z-10">
-      <header className="bg-white fixed top-0 w-full shadow-sm rounded-full">
+    <div className="">
+      <header className="bg-white fixed top-0 w-full shadow-sm rounded-full z-40">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 ">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex-shrink-0">

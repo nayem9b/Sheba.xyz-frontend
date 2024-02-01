@@ -13,17 +13,19 @@ const HomeSyncBreadCrumb = ({
   const breadCrumbItems = [
     {
       title: (
-        <Link href="/">
-          <HomeOutlined />
+        <Link href="/" className="text-gray-200 ">
+          <HomeOutlined className="text-xl " />
         </Link>
       ),
     },
     ...items.map((item) => {
       return {
         title: item.link ? (
-          <Link href={item.link}>{item.label}</Link>
+          <Link href={item.link} className="text-gray-200 text-xl">
+            <span className="mb-4"> {item.label}</span>
+          </Link>
         ) : (
-          <span>{item.label}</span>
+          <span className="">{item.label}</span>
         ),
       };
     }),
