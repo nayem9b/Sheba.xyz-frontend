@@ -62,8 +62,14 @@ const Form = () => {
       }}
     >
       <form onSubmit={onSubmit}>
-        <div style={{ position: "absolute", top: ".5rem", right: ".5rem" }}>
-          {currentStepIndex + 1} / {steps.length}
+        <div
+          style={{ position: "absolute", top: ".5rem", right: ".5rem" }}
+          className="text-white"
+        >
+          <p className="text-white">
+        
+            {currentStepIndex + 1} / {steps.length}
+          </p>
         </div>
         {step}
         <div

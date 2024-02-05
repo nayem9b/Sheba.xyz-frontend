@@ -416,7 +416,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
               </div>
             </div>
           </div>
-          <div className="w-[350px] mt-20 h-80 ml-52 rounded-xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 sticky top-0  ">
+          <div className="w-[350px] mt-20 h-96 ml-52 rounded-xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 sticky top-24 ">
             <p className=" ml-5 text-white font-bold text-2xl">
               {serviceInfo?.name}
             </p>
@@ -425,11 +425,12 @@ const SingleServicePage = ({ params }: { params: any }) => {
               <span className="text-2xl font-bold">{serviceInfo?.rating}</span>{" "}
               out of 5
             </p>
+            <p className="ml-5 text-white">({reviews?.length} reviews)</p>
             <p className=" ml-5 text-white font-bold text-2xl">
               {serviceInfo?.price} ₹
             </p>
             <div className="grid place-content-center place-items-center">
-              <Button className="w-40 h-11">
+              <Button className="px-5 h-11">
                 <Link
                   href={`/purchase/${id}`}
                   className="mr-3 mt-3 bg-none no-underline text-xl font-medium"
@@ -438,15 +439,14 @@ const SingleServicePage = ({ params }: { params: any }) => {
                   Book Service <CreditCardOutlined />
                 </Link>
               </Button>
-           
-                <Link
-                  href={"/mycart"}
-                  className="mr-3 mt-3 no-underline "
-                  onClick={handleAddToCart}
-                >
-                  Add to <ShoppingCartOutlined />
-                </Link>
-            
+
+              <Link
+                href={"/mycart"}
+                className="mr-3 mt-5 no-underline text-white text-lg "
+                onClick={handleAddToCart}
+              >
+                Add to <ShoppingCartOutlined />
+              </Link>
             </div>
           </div>
         </div>

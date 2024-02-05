@@ -20,36 +20,36 @@ export function AddressForm({
 }: AddressFormProps) {
   return (
     <FormWrapper title="Address">
-      <label>Street</label>
+      <label className="text-white text-xl ml-10 mt-3">Street</label>
       <input
         autoFocus
         required
-        className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
         placeholder="Street"
         type="text"
         name="street"
       />
-      <label>City</label>
+      <label className="text-white text-xl ml-10 mt-3">City</label>
       <input
         required
         type="text"
-        className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
         placeholder="City"
         name="city"
       />
-      <label>State</label>
+      <label className="text-white text-xl ml-10 mt-3">State</label>
       <input
         required
         type="text"
-        className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
         placeholder="State"
         name="state"
       />
-      <label>Zip</label>
+      <label className="text-white text-xl ml-10 mt-3">Zip</label>
       <input
         required
         type="text"
-        className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
         placeholder="zip"
         name="zip"
       />

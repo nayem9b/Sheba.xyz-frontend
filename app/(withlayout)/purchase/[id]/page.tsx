@@ -166,34 +166,59 @@ const PurchasePage = ({ params }: { params: any }) => {
           className="h-64  object-cover sm:h-80 lg:h-96"
         />
 
-        <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
+        <h3 className="mt-4 text-3xl font-bold text-gray-900">
           {serviceInfo?.name}
         </h3>
 
-        <p className="mt-2 text-xl text-gray-700">
-          <span className="font-semibold">Price :</span> {serviceInfo?.price} Tk
+        <p className="mt-2 text-3xl text-gray-700">
+          <span className="font-semibold"></span> {serviceInfo?.price} ₹
         </p>
-        <p className="mt-2 text-xl text-gray-700">
-          Rating : {serviceInfo?.rating} ⭐
-        </p>
+  
         <p className="mt-2 text-xl text-gray-700">
           Location : {serviceInfo?.location}
         </p>
-        <p className="mt-2 text-xl text-gray-700 text-justify">
-          {serviceInfo?.details}
-        </p>
+        <div>
+          <p className="font-semibold text-xl">Whats included?</p>
+          <ul>
+            <li>Only Service charge</li>
+            <li>7 Days service warrenty</li>
+          </ul>
+          <p className="font-semibold text-xl">Whats Excluded?</p>
+          <ul>
+            <li>Price of materials or parts</li>
+            <li>Transportation cost for carrying new materials/parts</li>
+            <li>Warranty given by manufacturer</li>
+          </ul>
+        </div>
+        {/* Safety */}
+        <div>
+          {/* <Image src={safety} alt="" className="w-72 h-24"></Image> */}
+          <p>
+            We are well-equipped and well-prepared to protect your health and
+            hygiene while serve you. Our preparations include-
+          </p>
+          <div>
+            <ul>
+              <li>Checked Health condition of service specialist</li>
+              <li>Ensuring use of masks, hand sanitisers, gloves, etc</li>
+              <li>Disinfecting equipments before and after the work</li>
+              <li>Maintaining social distancing</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div
-        style={{
-          position: "relative",
-          background: "white",
-          border: "1px solid black",
-          padding: "2rem",
-          margin: "1rem",
-          borderRadius: ".5rem",
-          fontFamily: "Arial",
-          maxWidth: "max-content",
-        }}
+        // style={{
+        //   position: "relative",
+        //   background: "white",
+        //   border: "1px solid black",
+        //   padding: "2rem",
+        //   margin: "1rem",
+        //   borderRadius: ".5rem",
+        //   fontFamily: "Arial",
+        //   maxWidth: "max-content",
+        // }}
+        className="w-full mt-20 h-full ml-52 rounded-xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 sticky top-24 "
       >
         <form onSubmit={onSubmit}>
           <div style={{ position: "absolute", top: ".5rem", right: ".5rem" }}>
@@ -209,9 +234,9 @@ const PurchasePage = ({ params }: { params: any }) => {
             }}
           >
             {!isFirstStep && (
-              <button type="button" onClick={back}>
+              <Button type="button" onClick={back}>
                 Back
-              </button>
+              </Button>
             )}
 
             <Button type="primary" size="large" htmlType="submit">
