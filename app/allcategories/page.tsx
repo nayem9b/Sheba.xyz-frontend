@@ -13,6 +13,7 @@ const AllCategoryPage = () => {
   return (
     <div>
       <h1 className="text-blue-600 text-center">All Categories</h1>
+      <h1 className="text-blue-600 text-center mt-10">All Categories</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
         {allCategories?.data?.map((category: any) => (
           <AllCategoryCard key={category.name} category={category} />

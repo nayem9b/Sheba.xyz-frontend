@@ -11,7 +11,8 @@ const AllServicespage = () => {
   });
   return (
     <div>
-      <h1 className="text-blue-700 text-center mb-20 text-5xl">All Services</h1>
+      <h1 className="text-blue-700 text-center text-5xl">All Services</h1>
+      <h1 className="text-center text-blue-600">All Services</h1>
       <div className="grid grid-cols-4 mx-60 gap-10">
         {allservices?.data?.map((service: any) => (
           <ServiceHomeCard key={service.name} service={service} />
