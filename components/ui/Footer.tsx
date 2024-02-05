@@ -3,7 +3,7 @@ import bankinfo from "../../Assets/payment_banner.jpg";
 import Image from "next/image";
 const Footer = () => {
   return (
-    <div className="">
+    <div className="relative z-50">
       <section className="py-10 bg-white sm:pt-16 lg:pt-24">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-y-12 gap-x-8 xl:gap-x-12">

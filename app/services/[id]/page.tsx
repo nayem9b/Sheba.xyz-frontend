@@ -134,7 +134,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
-      <Layout className=" px-16">
+      <Layout className="px-16 ">
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
