@@ -25,6 +25,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import Item from "antd/es/list/Item";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -36,7 +37,7 @@ const items = [
 ].map((icon, index) => ({
   key: String(index + 1),
   icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
+  label: "hello",
 }));
 
 const SingleServicePage = ({ params }: { params: any }) => {
@@ -134,33 +135,6 @@ const SingleServicePage = ({ params }: { params: any }) => {
   };
   return (
     <div>
-      <Layout className="px-16 ">
-        <Sider
-          breakpoint="lg"
-          collapsedWidth="0"
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
-          style={{
-            // overflow: "auto",
-            position: "fixed",
-            right: 0,
-          }}
-          className="mt-52 z-30 mr-32 rounded-3xl w-96 h-96 "
-        >
-          <div className="">
-            <Menu
-              mode="inline"
-              className=" py-20 rounded-2xl w-[900px] bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 mr-10 h-96 "
-              defaultSelectedKeys={["4"]}
-              items={items}
-            />
-          </div>
-        </Sider>
-      </Layout>
       <div className="relative mt-20">
         <img
           src={serviceInfo?.image}
@@ -271,35 +245,65 @@ const SingleServicePage = ({ params }: { params: any }) => {
             </div>
           </div>
         </section> */}
-
+        {/* <Layout className="px-16 ">
+          <Sider
+            breakpoint="lg"
+            collapsedWidth="0"
+            onBreakpoint={(broken) => {
+              console.log(broken);
+            }}
+            onCollapse={(collapsed, type) => {
+              console.log(collapsed, type);
+            }}
+            style={{
+              // overflow: "auto",
+              position: "fixed",
+              right: 0,
+            }}
+            className="mt-52 z-30 mr-32 rounded-3xl w-96"
+          >
+            <Link href="#">Title</Link>
+            <div className="">
+              <Menu
+                mode="inline"
+                className=" py-20 rounded-2xl w-[900px] bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 mr-10 "
+                defaultSelectedKeys={["4"]}
+                items={items}
+              />
+            </div>
+          </Sider>
+        </Layout> */}
         <div className="flex">
           <div className="w-1/6">
             <div className="grid ml-20 mt-8 gap-3 sticky top-20">
-              <Link className="text-black no-underline" href="#">
+              <Link className="text-black no-underline" href="#overview">
                 Service Overview
               </Link>
-              <Link className="text-black no-underline" href="#">
+              <Link className="text-black no-underline" href="#faq">
                 FAQ
               </Link>
               <Link className="text-black no-underline" href="#">
                 Reviews
               </Link>
-              <Link className="text-black no-underline" href="#">
+              <Link className="text-black no-underline" href="#details">
                 Details
               </Link>
             </div>
           </div>
           <div className="w-3/6 flex">
             <Divider type="vertical" className="h-full" />
-            <div className="ml-2">
+            <div className="ml-2" id="overview">
+              <p className="font-semibold text-2xl">
+                Overview of Painting Services
+              </p>
               {/* Overview of Service */}
               <div>
-                <p>Whats included?</p>
+                <p className="font-semibold text-xl">Whats included?</p>
                 <ul>
                   <li>Only Service charge</li>
                   <li>7 Days service warrenty</li>
                 </ul>
-                <p>Whats Excluded?</p>
+                <p className="font-semibold text-xl">Whats Excluded?</p>
                 <ul>
                   <li>Price of materials or parts</li>
                   <li>Transportation cost for carrying new materials/parts</li>
@@ -325,7 +329,7 @@ const SingleServicePage = ({ params }: { params: any }) => {
 
               {/* How TO order */}
               <div>
-                <p>How to order</p>
+                <p className="font-semibold text-2xl">How to order</p>
                 <Steps
                   current={current}
                   onChange={onChange}
@@ -348,8 +352,14 @@ const SingleServicePage = ({ params }: { params: any }) => {
                   ]}
                 />
               </div>
-              <ServiceFAQ />
-              <WhyUs />
+              <div id="faq">
+                <p className="font-semibold text-2xl">FAQ</p>
+                <ServiceFAQ />
+              </div>
+              <div id="details">
+                <WhyUs />
+              </div>
+
               {bookingResult?.length > 0 && reviewResult?.length === 0 && (
                 <div>
                   <h1 className="text-center mb-10">
@@ -404,6 +414,39 @@ const SingleServicePage = ({ params }: { params: any }) => {
                   )}
                 </section>
               </div>
+            </div>
+          </div>
+          <div className="w-[350px] mt-20 h-80 ml-52 rounded-xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 sticky top-0  ">
+            <p className=" ml-5 text-white font-bold text-2xl">
+              {serviceInfo?.name}
+            </p>
+            <p className="ml-5  rounded-md w-28 text-white">
+              <StarFilled />{" "}
+              <span className="text-2xl font-bold">{serviceInfo?.rating}</span>{" "}
+              out of 5
+            </p>
+            <p className=" ml-5 text-white font-bold text-2xl">
+              {serviceInfo?.price} ₹
+            </p>
+            <div className="grid place-content-center place-items-center">
+              <Button className="w-40 h-11">
+                <Link
+                  href={`/purchase/${id}`}
+                  className="mr-3 mt-3 bg-none no-underline text-xl font-medium"
+                  onClick={handleAddToCart}
+                >
+                  Book Service <CreditCardOutlined />
+                </Link>
+              </Button>
+           
+                <Link
+                  href={"/mycart"}
+                  className="mr-3 mt-3 no-underline "
+                  onClick={handleAddToCart}
+                >
+                  Add to <ShoppingCartOutlined />
+                </Link>
+            
             </div>
           </div>
         </div>
