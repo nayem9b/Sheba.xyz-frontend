@@ -271,119 +271,125 @@ const SingleServicePage = ({ params }: { params: any }) => {
             </div>
           </div>
         </section> */}
-        <Divider type="vertical" />
-        <div></div>
-        <div>
-          {/* Overview of Service */}
-          <div>
-            <p>Whats included?</p>
-            <ul>
-              <li>Only Service charge</li>
-              <li>7 Days service warrenty</li>
-            </ul>
-            <p>Whats Excluded?</p>
-            <ul>
-              <li>Price of materials or parts</li>
-              <li>Transportation cost for carrying new materials/parts</li>
-              <li>Warranty given by manufacturer</li>
-            </ul>
-          </div>
-          {/* Safety */}
-          <div>
-            <Image src={safety} alt="" className="w-72 h-24"></Image>
-            <p>
-              We are well-equipped and well-prepared to protect your health and
-              hygiene while serve you. Our preparations include-
-            </p>
-            <div>
-              <ul>
-                <li>Checked Health condition of service specialist</li>
-                <li>Ensuring use of masks, hand sanitisers, gloves, etc</li>
-                <li>Disinfecting equipments before and after the work</li>
-                <li>Maintaining social distancing</li>
-              </ul>
-            </div>
-          </div>
 
-          {/* How TO order */}
-          <div>
-            <p>How to order</p>
-            <Steps
-              current={current}
-              onChange={onChange}
-              direction="vertical"
-              items={[
-                {
-                  title: "Select service",
-                  description:
-                    "From the category, select the service you are looking for",
-                },
-                {
-                  title: "Book your schedule",
-                  description: "Select your convenient time slot.",
-                },
-                {
-                  title: "Place order",
-                  description: "Confirm your order by clicking ‘Place order’.",
-                },
-              ]}
-            />
-          </div>
-          <ServiceFAQ />
-          <WhyUs />
-          {bookingResult?.length > 0 && reviewResult?.length === 0 && (
-            <div>
-              <h1 className="text-center mb-10">
-                We will be happy to have your review
-              </h1>
-              <form className="w-3/6 mx-auto " onSubmit={handlePostReview}>
-                <span>
-                  <Rate
-                    tooltips={desc}
-                    onChange={setValue}
-                    value={value}
-                    className="mx-auto justify-center place-items-center text-4xl"
-                  />
-                  {value ? (
-                    <span className="ant-rate-text">{desc[value - 1]}</span>
-                  ) : (
-                    ""
-                  )}
-                </span>
-                <TextArea rows={4} name="review" />
-                <Button
-                  htmlType="submit"
-                  type="primary"
-                  className="flex justify-end mt-5"
-                >
-                  Submit
-                </Button>
-              </form>
-            </div>
-          )}
-
-          <div className=" mx-auto prose">
-            <section className="text-gray-600 body-font">
-              {reviews?.length > 0 ? (
+        <div className="flex">
+          <div className="w-1/6"></div>
+          <div className="w-3/6 flex">
+            <Divider type="vertical" className="h-full" />
+            <div className="ml-2">
+              {/* Overview of Service */}
+              <div>
+                <p>Whats included?</p>
+                <ul>
+                  <li>Only Service charge</li>
+                  <li>7 Days service warrenty</li>
+                </ul>
+                <p>Whats Excluded?</p>
+                <ul>
+                  <li>Price of materials or parts</li>
+                  <li>Transportation cost for carrying new materials/parts</li>
+                  <li>Warranty given by manufacturer</li>
+                </ul>
+              </div>
+              {/* Safety */}
+              <div>
+                <Image src={safety} alt="" className="w-72 h-24"></Image>
+                <p>
+                  We are well-equipped and well-prepared to protect your health
+                  and hygiene while serve you. Our preparations include-
+                </p>
                 <div>
-                  <div className="container px-5 py-24 mx-auto">
-                    <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
-                      Reviews ✨
-                    </h1>
-                    <div className="grid grid-cols-3 gap-5">
-                      {reviews?.map((review: any) => (
-                        <ReviewCard
-                          review={review}
-                          key={review?.id}
-                        ></ReviewCard>
-                      ))}
-                    </div>
-                  </div>
+                  <ul>
+                    <li>Checked Health condition of service specialist</li>
+                    <li>Ensuring use of masks, hand sanitisers, gloves, etc</li>
+                    <li>Disinfecting equipments before and after the work</li>
+                    <li>Maintaining social distancing</li>
+                  </ul>
                 </div>
-              ) : (
-                <div></div>
+              </div>
+
+              {/* How TO order */}
+              <div>
+                <p>How to order</p>
+                <Steps
+                  current={current}
+                  onChange={onChange}
+                  direction="vertical"
+                  items={[
+                    {
+                      title: "Select service",
+                      description:
+                        "From the category, select the service you are looking for",
+                    },
+                    {
+                      title: "Book your schedule",
+                      description: "Select your convenient time slot.",
+                    },
+                    {
+                      title: "Place order",
+                      description:
+                        "Confirm your order by clicking ‘Place order’.",
+                    },
+                  ]}
+                />
+              </div>
+              <ServiceFAQ />
+              <WhyUs />
+              {bookingResult?.length > 0 && reviewResult?.length === 0 && (
+                <div>
+                  <h1 className="text-center mb-10">
+                    We will be happy to have your review
+                  </h1>
+                  <form className="w-3/6 mx-auto " onSubmit={handlePostReview}>
+                    <span>
+                      <Rate
+                        tooltips={desc}
+                        onChange={setValue}
+                        value={value}
+                        className="mx-auto justify-center place-items-center text-4xl"
+                      />
+                      {value ? (
+                        <span className="ant-rate-text">{desc[value - 1]}</span>
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                    <TextArea rows={4} name="review" />
+                    <Button
+                      htmlType="submit"
+                      type="primary"
+                      className="flex justify-end mt-5"
+                    >
+                      Submit
+                    </Button>
+                  </form>
+                </div>
               )}
-            </section>
+
+              <div className=" mx-auto prose">
+                <section className="text-gray-600 body-font">
+                  {reviews?.length > 0 ? (
+                    <div>
+                      <div className="container px-5 py-24 mx-auto">
+                        <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
+                          Reviews ✨
+                        </h1>
+                        <div className="grid grid-cols-3 gap-5">
+                          {reviews?.map((review: any) => (
+                            <ReviewCard
+                              review={review}
+                              key={review?.id}
+                            ></ReviewCard>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                </section>
+              </div>
+            </div>
           </div>
         </div>
       </article>
