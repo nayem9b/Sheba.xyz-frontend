@@ -273,7 +273,22 @@ const SingleServicePage = ({ params }: { params: any }) => {
         </section> */}
 
         <div className="flex">
-          <div className="w-1/6"></div>
+          <div className="w-1/6">
+            <div className="grid ml-20 mt-8 gap-3 sticky top-20">
+              <Link className="text-black no-underline" href="#">
+                Service Overview
+              </Link>
+              <Link className="text-black no-underline" href="#">
+                FAQ
+              </Link>
+              <Link className="text-black no-underline" href="#">
+                Reviews
+              </Link>
+              <Link className="text-black no-underline" href="#">
+                Details
+              </Link>
+            </div>
+          </div>
           <div className="w-3/6 flex">
             <Divider type="vertical" className="h-full" />
             <div className="ml-2">
