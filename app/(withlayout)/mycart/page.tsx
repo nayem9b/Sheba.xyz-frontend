@@ -6,7 +6,7 @@ import {
 } from "@/redux/api/cartApi";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
-import { Button, message } from "antd";
+import { Button, Input, Space, message } from "antd";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -39,8 +39,8 @@ const MyCart = () => {
         <>
           {" "}
           <section>
-            <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-              <div className="mx-auto max-w-3xl">
+            <div className=" px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+              <div className=" ">
                 <header className="text-center">
                   <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
                     My Cart
@@ -48,32 +48,32 @@ const MyCart = () => {
                 </header>
 
                 <div className="mt-8">
-                  <ul className="space-y-4">
+                  <ul className="space-y-10">
                     {CartItems?.map((item: any) => (
                       <>
-                        <li className="flex items-center gap-4">
+                        <li className="flex gap-4">
                           <img
                             src={item?.service?.image}
                             alt=""
-                            className="h-52 w-52 rounded object-cover"
+                            className="h-52 w-52 rounded-3xl object-cover"
                           />
 
                           <div>
-                            <h3 className="text-4xl text-gray-900">
+                            <h3 className="text-3xl text-gray-900">
                               {item?.service?.name}
                             </h3>
 
                             <dl className="mt-0.5 space-y-px text-xl text-gray-600">
-                              <div>
-                                <dt className="inline">Price:</dt>
+                              <div className="text-xl font-bold">
+                                <dt className="inline ">Price:</dt>
                                 <dd className="inline">
-                                  {item?.service?.price} TAKA
+                                  {item?.service?.price} ₹
                                 </dd>
                               </div>
                               <div>
                                 <dt className="inline">Rating:</dt>
                                 <dd className="inline">
-                                  {item?.service?.rating} ⭐
+                                  {item?.service?.rating}
                                 </dd>
                               </div>
                               <div>
@@ -85,25 +85,28 @@ const MyCart = () => {
                           </div>
 
                           <div className="flex flex-1 items-center justify-end gap-2">
-                            <form>
-                              <label htmlFor="Line1Qty" className="sr-only">
-                                {" "}
-                                Quantity{" "}
-                              </label>
-                            </form>
-
-                            <Button
-                              className="text-gray-600 transition hover:text-red-600"
-                              onClick={() => {
-                                handleRemoveFromCart(item?.id);
-                              }}
-                              danger
-                            >
-                              <DeleteOutlined />
-                            </Button>
-                            <Link href={`/purchase/${item?.service?.id}`}>
-                              <Button type="primary">Book Service</Button>
-                            </Link>
+                            <div className="mr-16 flex gap-4">
+                              <Button
+                                className="text-gray-600 transition hover:text-red-600 h-12 "
+                                onClick={() => {
+                                  handleRemoveFromCart(item?.id);
+                                }}
+                                danger
+                              >
+                                <DeleteOutlined />
+                              </Button>
+                              <Link href={`/purchase/${item?.service?.id}`}>
+                                <Button type="primary" className="h-12">
+                                  Book Service
+                                </Button>
+                              </Link>
+                            </div>
+                            <Space.Compact className="w-96 h-12">
+                              <Input placeholder="Promo Code" />
+                              <Button type="primary" className="h-12">
+                                Submit
+                              </Button>
+                            </Space.Compact>
                           </div>
                         </li>
                       </>

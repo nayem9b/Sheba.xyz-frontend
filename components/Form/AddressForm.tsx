@@ -24,7 +24,7 @@ export function AddressForm({
       <input
         autoFocus
         required
-        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ml-14"
         placeholder="Street"
         type="text"
         name="street"
@@ -33,7 +33,7 @@ export function AddressForm({
       <input
         required
         type="text"
-        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ml-14"
         placeholder="City"
         name="city"
       />
@@ -41,7 +41,7 @@ export function AddressForm({
       <input
         required
         type="text"
-        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ml-14"
         placeholder="State"
         name="state"
       />
@@ -49,7 +49,7 @@ export function AddressForm({
       <input
         required
         type="text"
-        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+        className="w-80 rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm ml-14"
         placeholder="zip"
         name="zip"
       />

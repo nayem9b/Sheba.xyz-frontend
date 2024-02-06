@@ -163,7 +163,7 @@ const PurchasePage = ({ params }: { params: any }) => {
         <img
           alt="Art"
           src={serviceInfo?.image}
-          className="h-64  object-cover sm:h-80 lg:h-96"
+          className="h-64  object-cover sm:h-80 lg:h-96 rounded-3xl"
         />
 
         <h3 className="mt-4 text-3xl font-bold text-gray-900">
@@ -173,7 +173,7 @@ const PurchasePage = ({ params }: { params: any }) => {
         <p className="mt-2 text-3xl text-gray-700">
           <span className="font-semibold"></span> {serviceInfo?.price} ₹
         </p>
-  
+
         <p className="mt-2 text-xl text-gray-700">
           Location : {serviceInfo?.location}
         </p>
@@ -221,7 +221,10 @@ const PurchasePage = ({ params }: { params: any }) => {
         className="w-full mt-20 h-full ml-52 rounded-xl bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-[#1da89f]  to-purple-700 sticky top-24 "
       >
         <form onSubmit={onSubmit}>
-          <div style={{ position: "absolute", top: ".5rem", right: ".5rem" }}>
+          <div
+            style={{ position: "absolute", top: ".5rem", right: ".5rem" }}
+            className="text-white text-lg font-semibold"
+          >
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}
@@ -234,12 +237,21 @@ const PurchasePage = ({ params }: { params: any }) => {
             }}
           >
             {!isFirstStep && (
-              <Button type="button" onClick={back}>
+              <Button
+                type="default"
+                onClick={back}
+                className="mb-10 mr-2 px-6 mt-4"
+              >
                 Back
               </Button>
             )}
 
-            <Button type="primary" size="large" htmlType="submit">
+            <Button
+              type="primary"
+              size="large"
+              htmlType="submit"
+              className="mb-10 mr-32 px-6 mt-3"
+            >
               {isLastStep ? "Finish" : "Next"}
             </Button>
 
