@@ -80,7 +80,6 @@ const News = () => {
                       className="object-cover w-full h-full"
                       src="https://pathao.com/wp-content/uploads/2019/08/SameDay-Delivery_Blog-1024x536.png"
                       alt=""
-                      className="w-full h-60"
                     />
                   </a>
 
@@ -132,10 +131,10 @@ const News = () => {
                 <div className="">
                   <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                     <img
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-60"
                       src="https://tfe-bd.sgp1.cdn.digitaloceanspaces.com/uploads/1585541403.jpg"
                       alt=""
-                      className="w-full h-60"
+       
                     />
                   </a>
 
