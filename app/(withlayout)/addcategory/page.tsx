@@ -57,7 +57,7 @@ const AddCategorypage = () => {
             image: imgData.data.url,
           };
 
-          fetch(`http://localhost:3333/api/v1/categories`, {
+          fetch(`https://sheba-backend.vercel.app/api/v1/categories`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -154,7 +154,7 @@ const AddCategorypage = () => {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="http://localhost:3333/api/v1/"
+        action="https://sheba-backend.vercel.app/api/v1/"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
