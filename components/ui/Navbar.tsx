@@ -138,15 +138,15 @@ const Navbar = () => {
                 <div className="flex gap-4">
                   <Link
                     href="sign-in"
-                    className="px-5 py-3 font-medium bg-blue-50 hover:bg-blue-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm"
+                    className="px-5 py-3 font-medium bg-blue-50 hover:bg-blue-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm no-underline"
                   >
                     sign in
                   </Link>
                   <Link
                     href="sign-up"
-                    className="px-5 py-3 font-medium bg-blue-50 hover:bg-green-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm"
+                    className="px-5 py-3 font-medium bg-green-200 hover:bg-green-100 hover:text-blue-600 text-blue-500 rounded-lg text-sm no-underline"
                   >
-                    sign up
+                    New here?
                   </Link>
                 </div>
               </>

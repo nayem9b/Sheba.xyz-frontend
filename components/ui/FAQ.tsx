@@ -9,14 +9,14 @@ const FAQ = () => {
             <h2 className="text-3xl font-bold leading-tight  sm:text-4xl lg:text-5xl">
               Questions & Answers
             </h2>
-            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-300">
+            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-800">
               Explore the common questions and answers about Celebration
             </p>
           </div>
 
           <div className="grid grid-cols-1 mt-12 md:mt-20 md:grid-cols-2 gap-y-16 gap-x-20">
             <div className="flex items-start">
-              <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-700 rounded-full">
+              <div className="flex mt-5 items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-300 rounded-full">
                 <span className="text-lg font-semibold ">?</span>
               </div>
               <div className="ml-4">
@@ -31,7 +31,7 @@ const FAQ = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-700 rounded-full">
+              <div className="flex mt-5 items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-300 rounded-full">
                 <span className="text-lg font-semibold ">?</span>
               </div>
               <div className="ml-4">
@@ -46,7 +46,7 @@ const FAQ = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-700 rounded-full">
+              <div className="flex mt-5 items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-300 rounded-full">
                 <span className="text-lg font-semibold ">?</span>
               </div>
               <div className="ml-4">
@@ -61,7 +61,7 @@ const FAQ = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-700 rounded-full">
+              <div className="flex mt-5 items-center justify-center flex-shrink-0 w-8 h-8 bg-gray-300 rounded-full">
                 <span className="text-lg font-semibold ">?</span>
               </div>
               <div className="ml-4">
@@ -75,21 +75,17 @@ const FAQ = () => {
               </div>
             </div>
           </div>
-
+          {/* 
           <div className="flex items-center justify-center mt-12 md:mt-20">
-            <div className="px-8 py-4 text-center bg-gray-800 rounded-full">
+            <div className="px-8 py-4 text-center bg-gray-700 rounded-full">
               <p className="text-gray-50">
                 Didn’t find the answer you are looking for?{" "}
-                <a
-                  href="#"
-                  title=""
-                  className="text-yellow-300 transition-all duration-200 hover:text-yellow-400 focus:text-yellow-400 hover:underline"
-                >
+                <a href="#" title="" className="text-blue-400 no-underline">
                   Contact our support
                 </a>
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

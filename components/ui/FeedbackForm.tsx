@@ -41,7 +41,7 @@ const FeedbackForm = () => {
               <div className="mt-8">
                 <a
                   href=""
-                  className="text-2xl font-bold text-pink-600 no-underline"
+                  className="text-2xl font-bold text-blue-500 no-underline"
                 >
                   +8801755299400
                 </a>
