@@ -7,13 +7,15 @@ const AllCategoryCard = ({ category }: any) => {
       <Link
         style={{ textDecoration: "none" }}
         href={`/category/${category?.id}`}
-        className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
+        className=" rounded-lg shadow-sm shadow-indigo-100 "
       >
-        <img alt="Home" src={category?.image} className="w-40 h-40" />
-
-        <div className="mt-2 text-center text-black font-semibold">
-          <p className="font-medium mx-auto ">{category?.title}</p>
+        <div className="flex justify-center items-center">
+          <img alt="Home" src={category?.image} className="w-40 h-40" />
         </div>
+
+        <p className="font-medium mx-auto mb-4 mt-2 text-center text-black pb-3 ">
+          {category?.title}
+        </p>
       </Link>
     </div>
   );

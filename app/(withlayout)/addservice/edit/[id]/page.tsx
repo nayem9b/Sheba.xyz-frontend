@@ -25,7 +25,7 @@ const EditServicepage = ({ params }: { params: any }) => {
     };
   });
   useEffect(() => {
-    fetch(`https://sheba-backend.vercel.app/api/v1/services/${id}`)
+    fetch(`http://localhost:3333/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -64,7 +64,7 @@ const EditServicepage = ({ params }: { params: any }) => {
             rating: "5",
           };
 
-          fetch(`https://sheba-backend.vercel.app/api/v1/services/${id}`, {
+          fetch(`http://localhost:3333/api/v1/services/${id}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
@@ -84,8 +84,8 @@ const EditServicepage = ({ params }: { params: any }) => {
   return (
     <div>
       <div className="w-7/12 mx-auto">
-        <h1>Edit Service Details </h1>
-        <label> Select</label>
+        <h1 className="mt-16 text-center">Edit Service Details </h1>
+        <label>Select</label>
         <form onSubmit={handleSubmit}>
           <Select
             className="w-full"
@@ -137,7 +137,7 @@ const EditServicepage = ({ params }: { params: any }) => {
             </div>
           </div>
 
-          <div className="flex flex-row-reverse mt-10">
+          <div className="flex justify-center mt-10">
             <Button
               htmlType="submit"
               className="rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white cursor-pointer"

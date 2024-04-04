@@ -128,8 +128,8 @@ const AddService = () => {
 
   return (
     <div className="flex">
-      <div className="w-1/2">
-        <h1 className="mx-auto text-center">All Services</h1>
+      <div className="w-full">
+        <h1 className="mx-auto text-center mt-16">All Services</h1>
         <ShebaTable
           loading={isLoading}
           columns={columns}

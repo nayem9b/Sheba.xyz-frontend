@@ -58,7 +58,7 @@ const allServices = () => {
 
           console.log(addServiceSendData);
 
-          fetch(`https://sheba-backend.vercel.app/api/v1/create-service`, {
+          fetch(`http://localhost:3333/api/v1/create-service`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -76,9 +76,10 @@ const allServices = () => {
   };
   return (
     <div>
+      {/* <h1 className="text-blue-500">Add a service </h1> */}
+      <h1 className="text-blue-500 mt-24 text-center">Add a service </h1>
       <div className="">
-        <div className="w-7/12 mx-auto">
-          <h1>Add a service </h1>
+        <div className="w-6/12 mx-auto">
           <label> Select</label>
           <form onSubmit={handleSubmit}>
             <Select

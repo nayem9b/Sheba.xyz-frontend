@@ -15,7 +15,7 @@ const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch(`https://sheba-backend.vercel.app/api/v1/users/${user?.id}`)
+    fetch(`http://localhost:3333/api/v1/users/${user?.id}`)
       .then((res) => res.json())
       .then((data) => {
         setDbUserRole(data?.data?.role);
@@ -123,7 +123,9 @@ const SideBar = () => {
                     />
                   </svg>
 
-                  <span className="mx-2 text-sm font-medium">All Services</span>
+                  <span className="mx-2 text-sm font-medium">
+                    Create Service
+                  </span>
                 </Link>
               </div>
             )}
@@ -179,7 +181,7 @@ const SideBar = () => {
                     </svg>
 
                     <span className="mx-2 text-sm font-medium">
-                      Add Service
+                     Manage Services
                     </span>
                   </Link>
                 )}

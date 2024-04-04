@@ -57,7 +57,7 @@ const AddCategorypage = () => {
             image: imgData.data.url,
           };
 
-          fetch(`https://sheba-backend.vercel.app/api/v1/categories`, {
+          fetch(`http://localhost:3333/api/v1/categories`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -127,7 +127,7 @@ const AddCategorypage = () => {
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
             />
           </div>
-          <label htmlFor="image" className="block text-sm text-gray-800 mb-2">
+          <label htmlFor="image" className="block text-sm text-gray-700 mb-2">
             Image
           </label>
 
@@ -136,25 +136,29 @@ const AddCategorypage = () => {
             id="image"
             name="image"
             accept="image/*"
-            className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200  placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600  dark:focus:border-blue-300"
+            className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200  placeholder-gray-400/70 dark:placeholder-gray-500 dark:border-gray-600 0 border-spacing-0"
           />
 
-          <div className="flex flex-row-reverse">
-            <button className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white cursor-pointer">
-              Create
+          <div className="flex justify-center">
+            <button className="border-0 rounded-lg bg-blue-500 px-20 py-2 text-sm font-medium text-white cursor-pointer mt-10">
+              <span className="text-lg"> Create</span>
             </button>
-            <Button type="primary" className="px-5 my-3 text-center">
+            {/* <Button
+              // onClick={() => handleSubmit}
+              type="primary"
+              className="px-5 my-3 text-center"
+            >
               Create
-            </Button>
+            </Button> */}
           </div>
         </form>
       </div>
-      <Upload
+      {/* <Upload
         name="avatar"
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://sheba-backend.vercel.app/api/v1/"
+        action="http://localhost:3333/api/v1/"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
@@ -163,7 +167,7 @@ const AddCategorypage = () => {
         ) : (
           uploadButton
         )}
-      </Upload>
+      </Upload> */}
     </div>
   );
 };
