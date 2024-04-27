@@ -36,8 +36,8 @@ const CustomerReviewsCarousal = () => {
                 Sheba.xyz.{" "}
                 <span className="text-3xl font-extrabold">&#34;</span>
               </p>
-              <p>- says someone</p>
-              <p>Profession</p>
+              <p>- Adrita</p>
+              <p>Marketing Specialist</p>
             </div>
           </div>
 
@@ -58,8 +58,8 @@ const CustomerReviewsCarousal = () => {
                 satisfied with their quality of service.
                 <span className="text-3xl font-extrabold">&#34;</span>
               </p>
-              <p>- says someone</p>
-              <p>Profession</p>
+              <p>- Tamanna</p>
+              <p>Lawyer</p>
             </div>
           </div>
 
@@ -81,8 +81,8 @@ const CustomerReviewsCarousal = () => {
                 amazing. Thank you.
                 <span className="text-3xl font-extrabold">&#34;</span>
               </p>
-              <p>- says someone</p>
-              <p>Profession</p>
+              <p>-Aliyana</p>
+              <p>Finance consultent</p>
             </div>
           </div>
 

@@ -4,7 +4,7 @@ import {
   useCartItemsByUserIdQuery,
   useDeleteCartMutation,
 } from "@/redux/api/cartApi";
-import { DeleteOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined, DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
 import { Button, Input, Space, message } from "antd";
 import Link from "next/link";
@@ -118,7 +118,14 @@ const MyCart = () => {
           </section>
         </>
       ) : (
-        <h1 className="text-center">No items in your cart</h1>
+        <div className="text-center mt-36">
+          <h1 >
+            No services in your cart <ShoppingCartOutlined />
+          </h1>
+          <p className="text-xl">Add one <Link href={'/allservices'}>
+          <ArrowRightOutlined className="text-blue-500"/>
+          </Link></p>
+        </div>
       )}
     </div>
   );

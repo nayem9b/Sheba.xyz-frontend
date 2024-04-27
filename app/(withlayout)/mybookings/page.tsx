@@ -4,10 +4,11 @@ import {
   useBookingsByUserIdQuery,
   useDeleteBookingMutation,
 } from "@/redux/api/bookingApi";
-import { DeleteOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
 import { Button, Rate, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -161,9 +162,12 @@ const MyBookings = () => {
           </>
         ))
       ) : (
-        <>
-          <h1 className="text-center">You have not booked any service</h1>
-        </>
+        <div className="text-center mt-36">
+          <h1 >You haven&apos;t booked any service</h1>
+          <p className="text-xl">Book one <Link href={'/allservices'}>
+          <ArrowRightOutlined className="text-blue-500"/>
+          </Link></p>
+        </div>
       )}
     </div>
   );

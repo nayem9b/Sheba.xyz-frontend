@@ -158,7 +158,7 @@ const PurchasePage = ({ params }: { params: any }) => {
     }
   }
   return (
-    <div className="flex justify-around gap-16 mx-40 mt-32">
+    <div className="flex justify-around  mx-14 mt-32">
       <div className="w-1/2">
         <img
           alt="Art"
