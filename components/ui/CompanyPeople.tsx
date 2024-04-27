@@ -19,11 +19,11 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-1.jpg"
+                src="https://d1f34ajap1v5tm.cloudfront.net/image/dUhMl-8-mVineeta%20Singh.jpg"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">
-                Jenny Wilson
+              Vineeta Singh
               </p>
               <p className="mt-1 text-base leading-tight text-gray-600">
                 Founder
@@ -35,11 +35,11 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-2.jpg"
+                src="https://d1f34ajap1v5tm.cloudfront.net/image/iM2noqMaEAditi%20Gupta.jpg"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">
-                Darrell Steward
+              Aditi Gupta
               </p>
               <p className="mt-1 text-base leading-tight text-gray-600">CTO</p>
             </div>
@@ -49,7 +49,7 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-3.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQankryt04OyH_wSJC68p3NlnIGB5-bxuuMGwyPsPL7Ug&s"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">
@@ -63,7 +63,7 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-4.jpg"
+                src="https://i0.wp.com/digest.myhq.in/wp-content/uploads/2023/12/image-7.png?resize=900%2C600&ssl=1"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">
@@ -79,7 +79,7 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-5.jpg"
+                src="https://assets.entrepreneur.com/content/1x1/300/20170809112931-profilephoto.jpeg"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">
@@ -93,7 +93,7 @@ const CompanyPeople = () => {
             <div>
               <img
                 className="object-cover mx-auto rounded-lg w-28 h-28"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/team/3/team-avatar-5.jpg"
+                src="https://www.founderjar.com/wp-content/uploads/2022/09/10.-Suumit-Shah.jpeg"
                 alt=""
               />
               <p className="mt-8 text-lg font-semibold leading-tight text-black">

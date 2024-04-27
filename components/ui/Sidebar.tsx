@@ -13,6 +13,11 @@ const SideBar = () => {
   const userRole = checkUserRole(session);
   const [dbUserRole, setDbUserRole] = useState<string>("");
   const [collapsed, setCollapsed] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
+
+  const handleSetActiveLink = (link: string) => {
+    setActiveLink(link);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:3333/api/v1/users/${user?.id}`)
@@ -61,8 +66,14 @@ const SideBar = () => {
             {(userRole === "admin" || dbUserRole === "admin") && (
               <div>
                 <Link
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-300  hover:text-gray-700"
+                  // className={`flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg  hover:bg-gray-300  hover:text-gray-700 ${
+                  //   activeLink === "/" ? "font-bold" : ""
+                  // }`}
                   href={"/allusers"}
+                  onClick={() => handleSetActiveLink('/')}
+                  className={`text-black hover:text-gray-300 ${
+                    activeLink === '/' ? 'font-bold text-blue-500' : 'text-green-500'
+                  }`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +192,7 @@ const SideBar = () => {
                     </svg>
 
                     <span className="mx-2 text-sm font-medium">
-                     Manage Services
+                      Manage Services
                     </span>
                   </Link>
                 )}

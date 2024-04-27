@@ -54,50 +54,37 @@ const AdminDashboardPage = () => {
     <div>
       <h1 className="text-center text-blue-500 text-4xl">Sheba Matrics</h1>
       <div className="grid grid-cols-4">
-        <div className="mt-2 text-center text-black font-semibold bg-red-500 rounded-3xl border-slate-950 border-4">
+        <div className="mt-2 text-center text-black font-semibold bg-[#cdb4db] rounded-3xl border-slate-950 border-4">
           <p className="">All Users</p>
           <p className="font-medium mx-auto "> {allUsers?.data?.length} </p>
         </div>
 
-        <div
-          style={{ textDecoration: "none" }}
-          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
-        >
-          <div className="mt-2 text-center text-black font-semibold">
+       
+          <div className="mt-2 text-center text-black font-semibold  bg-[#ffc8dd] rounded-3xl border-slate-950 border-4">
             <p>All Categories</p>
             <p className="font-medium mx-auto "> {allCategory?.data?.length}</p>
           </div>
-        </div>
-        <div
-          style={{ textDecoration: "none" }}
-          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
-        >
-          <div className="mt-2 text-center text-black font-semibold">
+        
+        
+          <div className="mt-2 text-center text-black font-semibold bg-[#ffafcc] rounded-3xl border-slate-950 border-4">
             <p>All Services</p>
             <p className="font-medium mx-auto "> {allServices?.data?.length}</p>
           </div>
-        </div>
-        <div
-          style={{ textDecoration: "none" }}
-          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
-        >
-          <div className="mt-2 text-center text-black font-semibold">
+   
+          <div className="mt-2 text-center text-black font-semibold bg-[#bde0fe] rounded-3xl border-slate-950 border-4">
             <p>All Bookings</p>
             <p className="font-medium mx-auto "> {allBookings?.data?.length}</p>
           </div>
-        </div>
-        <div
-          style={{ textDecoration: "none" }}
-          className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
-        >
-          <div className="mt-2 text-center text-black font-semibold">
+       
+    
+          <div className="mt-2 text-center text-black font-semibold bg-[#ffe66b] rounded-3xl border-slate-950 border-4">
             <p>Pending Bookings</p>
             <p className="font-medium mx-auto ">
               {" "}
               {pendingBookings?.data?.length}
             </p>
           </div>
-        </div>
+     
         <div
           style={{ textDecoration: "none" }}
           className="block rounded-lg p-4 shadow-sm shadow-indigo-100 "
