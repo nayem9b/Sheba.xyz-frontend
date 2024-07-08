@@ -1,7 +1,6 @@
 services:
-  sheba:
-    image: "node:latest"
-    environment:
-      - MYSQL_DATABASE="root"
-      - MYSQL_DATABASE="shebaDatabase"
-    container_name: "sheba-db"
+  shebaclient:
+    build: ./
+    ports:
+      - 3000:3000
+    container_name: shebaclient
