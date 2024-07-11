@@ -4,3 +4,6 @@ services:
     ports:
       - 3000:3000
     container_name: sheba-client
+    env_file:
+      - .env.local
+      - variables.env

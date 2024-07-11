@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: sheba-client
 spec:
-  # 3 Pods should exist at all times.
   replicas: 2
   selector:
     matchLabels:
@@ -11,11 +10,23 @@ spec:
   template:
     metadata:
       labels:
-        # Apply this label to pods and default
-        # the Deployment label selector to this value
         app: sheba-client
     spec:
       containers:
       - name: sheba-client
-        # Run this image
         image: nayem9b/sheba:latest
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sheba-client
+spec:
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: sheba-client
+  type: LoadBalancer
