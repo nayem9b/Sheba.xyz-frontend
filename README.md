@@ -1,70 +1,96 @@
 # Sheba.xyz
 
-## Live Website: https://shebaxyz-gt23ec1s0-nayem9b.vercel.app/
+## Live Website
+[Visit Sheba.xyz](https://shebaxyz-gt23ec1s0-nayem9b.vercel.app/)
 
-### Super Admin Credentials
+## Super Admin Access
+- **Email:** admin@admin.com
+- **Password:** adminVitamin
 
-#### email: admin@admin.com
+## Backend Information
+- **Local Development:** http://localhost:3333/
+- **API Documentation:** [Postman Documentation](https://documenter.getpostman.com/view/24754089/2s9YRB1X3f)
 
-#### password: adminVitamin
+## Repository Links
+- **Frontend:** [GitHub Repository](https://github.com/nayem9b/Sheba.xyz-frontend)
+- **Backend:** [GitHub Repository](https://github.com/nayem9b/Sheba.xyz-backend)
 
-## Backend Live-link: http://localhost:3333/
-
-## Postman Documentor Link: https://documenter.getpostman.com/view/24754089/2s9YRB1X3f
-
-### client-side-repo: https://github.com/nayem9b/Sheba.xyz-frontend
-
-### server-side-repo: https://github.com/nayem9b/Sheba.xyz-backend
-
-#### ER Diagram
-
+## Database Structure
 ![ER Diagram](https://i.ibb.co/bQbtt7d/ER-Diagram.png)
 
-### Homepage Contents
+## Website Features
 
-- Navbar
+### Homepage Sections
+- Navigation Bar
 - Header
-- Available Service
+- Available Services
 - Upcoming Services
 - Events by Category
 - Survey/Overview
-- Client Review
+- Client Reviews
 - Latest News
 - Footer
-- Two or more unique Sections
+- Additional Custom Sections
 
-### User Functional Requirements
+### User Features
 
-- Users are able to register with a valid email address.
-- Implemented password validation and security measures.
-- Users log in to access their accounts.
-- Users can create and manage their profiles, including personal information and preferences.
-- Users are able to view and edit their profiles easily.
-- Users can browse available services.
-- search feature allowing users to search services by name, location, and category.
-- Users are able to filter services by price range and other relevant criteria.
-- Users can select services and choose available dates and times for booking(if applicable) .
-- smooth and user-friendly booking process with confirmation.
-- Users are able to track the status of their bookings.
-- Users can leave reviews and ratings for services they have booked.
-- Reviews and ratings are displayed on service listings.
-- user dashboard displaying booking history and statuses.
-- Users have the option to cancel bookings if necessary.
-- user-friendly feedback forms for users to submit comments and suggestions.
+#### Authentication & Profile
+- User registration with email verification
+- Secure password implementation
+- User login functionality
+- Profile creation and management
+- Easy profile viewing and editing
 
-### Admin Functional Requirements
+#### Service Management
+- Browse available services
+- Advanced search functionality:
+  - Search by service name
+  - Search by location
+  - Search by category
+- Filter services by:
+  - Price range
+  - Additional criteria
 
-- Admins should have access to a centralized dashboard to monitor and manage website activities.
-- Admins can add, edit, and manage user accounts.
-- Admins are able to add, edit, and remove service listings.
-- options for pricing, descriptions, and availability management.
-- booking management system for administrators to view and manage booking requests.
-- Admins can accept, reject, or adjust schedules as needed.
-- content management system for administrators to control website content, including blog posts and FAQs.
-- Allowed administrators to manage their profiles.
+#### Booking System
+- Service selection with date and time booking
+- Streamlined booking process
+- Booking confirmation system
+- Real-time booking status tracking
+- Booking cancellation option
 
-### Super Admin Functional Requirements
+#### Reviews & Feedback
+- Service rating and review system
+- Display of reviews on service listings
+- User dashboard with booking history
+- Feedback submission system
 
-- Super admins can add new admin users to the system.
-- managing admin roles.
-- profile management system for super admins to update their personal information.
+### Admin Features
+
+#### Dashboard
+- Centralized admin dashboard
+- User account management
+- Service listing management
+- Booking request management
+- Content management system
+
+#### Service Administration
+- Add new services
+- Edit existing services
+- Remove services
+- Manage pricing
+- Update service descriptions
+- Control service availability
+
+#### Booking Management
+- View all booking requests
+- Accept/reject bookings
+- Schedule adjustments
+- Booking status updates
+
+### Super Admin Features
+
+#### System Administration
+- Admin user management
+- Role assignment and management
+- Profile management
+- System-wide oversight
