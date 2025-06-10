@@ -1,30 +1,30 @@
----
-name: Lint
+# ---
+# name: Lint
 
-on: 
-  push: null
-  pull_request: null
+# on: 
+#   push: null
+#   pull_request: null
 
-permissions: {}
+# permissions: {}
 
-jobs:
-  build:
-    name: Lint
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     name: Lint
+#     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
+#     permissions:
+#       contents: read
+#       packages: read
+#       statuses: write
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
 
-      - name: Super-linter
-        uses: super-linter/super-linter@v7.1.0 
-        env:
+#       - name: Super-linter
+#         uses: super-linter/super-linter@v7.1.0 
+#         env:
        
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
