@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // SONAR_HOME = tool "Sonar"
-        DOCKER_IMAGE = "nayem9b/sheba-frontend"
+        DOCKER_IMAGE = "nayem9b/sheba-frontend-jenkins-build"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
     stages {
@@ -66,11 +66,11 @@ pipeline {
             }
         }
 
-        stage("Deploy using Docker Compose") {
-            steps {
-                sh "docker-compose up -d"
-            }
-        }
+        // stage("Deploy using Docker Compose") {
+        //     steps {
+        //         sh "docker-compose up -d"
+        //     }
+        // }
     }
     post {
         always {
