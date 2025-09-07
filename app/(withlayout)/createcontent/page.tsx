@@ -32,7 +32,7 @@ const CreateContentpage = () => {
           const contentSendData = {
             heading: heading,
             content: content,
-            image: imgData.data.url,
+            image: imgData?.data?.url,
           };
 
           fetch(`http://localhost:3333/api/v1/content`, {

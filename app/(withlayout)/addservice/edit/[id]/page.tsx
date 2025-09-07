@@ -10,26 +10,24 @@ const EditServicepage = ({ params }: { params: any }) => {
   const { id } = params;
   const [selectData, setSelectData] = useState();
   const [serviceData, setServiceData] = useState<any>();
+  const [imageUrl, setImageUrl] = useState<string>();
   const handleChange = (value: any) => {
-    console.log(`selected ${value}`);
     setSelectData(value);
   };
   const { data: allCategories } = useCategoriesQuery({
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
   });
-  const categoryOptions = allCategories?.data?.map((category: any) => {
-    return {
-      label: category?.title,
-      value: category?.id,
-    };
-  });
+  const categoryOptions = allCategories?.data?.map((category: any) => ({
+    label: category?.title,
+    value: category?.id,
+  }));
   useEffect(() => {
     fetch(`http://localhost:3333/api/v1/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setServiceData(data?.data);
+        setImageUrl(data?.data?.image);
       });
   }, [id]);
 
@@ -59,7 +57,7 @@ const EditServicepage = ({ params }: { params: any }) => {
             name: name,
             price: price,
             details: details,
-            image: imgData.data.url,
+            image: imgData?.data?.url,
             categoryId: selectData,
             rating: "5",
           };
@@ -82,65 +80,91 @@ const EditServicepage = ({ params }: { params: any }) => {
       });
   };
   return (
-    <div>
-      <div className="w-7/12 mx-auto">
-        <h1 className="mt-16 text-center">Edit Service Details </h1>
-        <label>Select</label>
-        <form onSubmit={handleSubmit}>
-          <Select
-            className="w-full"
-            defaultValue="Select Category"
-            onChange={handleChange}
-            style={{ width: 170 }}
-            options={categoryOptions}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 flex items-center justify-center py-10">
+      <div className="bg-white/90 shadow-2xl rounded-3xl p-10 max-w-xl w-full border border-blue-100">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-blue-600 mb-2 tracking-tight">Edit Service Details</h1>
+          <p className="text-gray-500 text-sm">Update the details of your service</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label> Name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Select Category</label>
+            <Select
+              className="w-full"
+              placeholder="Select Category"
+              onChange={handleChange}
+              options={categoryOptions}
+              size="large"
+              defaultValue={serviceData?.categoryId}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Service Name</label>
             <input
               autoFocus
               required
-              className="w-full rounded-lg border-gray-200 p-4 pe-12 shadow-sm"
-              placeholder={serviceData?.name}
+              className="w-full rounded-xl border border-gray-200 p-3 text-base shadow-sm focus:ring-2 focus:ring-blue-200 focus:outline-none transition"
+              placeholder="Service Name"
               type="text"
               name="name"
+              defaultValue={serviceData?.name}
             />
-            <label>Price</label>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
             <input
               required
               type="number"
-              className="w-full text-lg rounded-lg border-gray-200 p-4 pe-12 shadow-sm"
-              placeholder={serviceData?.price}
+              className="w-full rounded-xl border border-gray-200 p-3 text-base shadow-sm focus:ring-2 focus:ring-blue-200 focus:outline-none transition"
+              placeholder="Price"
               name="price"
+              defaultValue={serviceData?.price}
             />
-            <label>Details</label>
-
-            <textarea
-              className="w-full px-3 h-36 text-gray-700 border rounded-lg focus:outline-none"
-              name="details"
-              placeholder={serviceData?.details}
-            ></textarea>
-            <div>
-              <label
-                htmlFor="image"
-                className="block text-sm text-gray-500 dark:text-gray-300"
-              >
-                Image
-              </label>
-
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200  placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600  dark:focus:border-blue-300"
-              />
-            </div>
           </div>
-
-          <div className="flex justify-center mt-10">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Details</label>
+            <textarea
+              className="w-full px-3 h-36 text-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-200"
+              name="details"
+              placeholder="Describe the service..."
+              defaultValue={serviceData?.details}
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">Image</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="block w-full px-3 py-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-xl file:bg-blue-100 file:text-blue-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full"
+              onChange={e => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = () => setImageUrl(reader.result as string);
+                  reader.readAsDataURL(file);
+                } else {
+                  setImageUrl(serviceData?.image);
+                }
+              }}
+            />
+            {imageUrl && (
+              <div className="flex justify-center mt-4">
+                <img
+                  src={imageUrl}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded-xl border border-blue-200 shadow-md"
+                />
+              </div>
+            )}
+          </div>
+          <div className="flex justify-center mt-8">
             <Button
               htmlType="submit"
-              className="rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white cursor-pointer"
+              type="primary"
+              size="large"
+              className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-10 py-3 text-base font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-200 border-0"
             >
               Submit
             </Button>

@@ -74,83 +74,101 @@ const allServices = () => {
         }
       });
   };
+  const [imageUrl, setImageUrl] = useState<string>();
   return (
-    <div>
-      {/* <h1 className="text-blue-500">Add a service </h1> */}
-      <h1 className="text-blue-500 mt-24 text-center">Add a service </h1>
-      <div className="">
-        <div className="w-6/12 mx-auto">
-          <label> Select</label>
-          <form onSubmit={handleSubmit}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 flex items-center justify-center py-10">
+      <div className="bg-white/90 shadow-2xl rounded-3xl p-10 max-w-xl w-full border border-blue-100">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-blue-600 mb-2 tracking-tight">Add a Service</h1>
+          <p className="text-gray-500 text-sm">Fill in the details to add a new service</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Select Category</label>
             <Select
               className="w-full"
-              defaultValue="Select Category"
+              placeholder="Select Category"
               onChange={handleChange}
-              style={{ width: 170 }}
               options={categoryOptions}
+              size="large"
             />
-            <div className="">
-              <label className="mt-5"> Select Status</label>
-              <select name="status" className="w-full" id="country">
-                <option value="available">available</option>
-                <option value="upcoming">upcoming</option>
-              </select>
-            </div>
-            <div>
-              <label> Name</label>
-              <input
-                autoFocus
-                required
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 shadow-sm"
-                placeholder="Service Name"
-                type="text"
-                name="name"
-              />
-              <label>Price</label>
-              <input
-                required
-                type="number"
-                className="w-full text-lg rounded-lg border-gray-200 p-4 pe-12 shadow-sm"
-                placeholder="Price"
-                name="price"
-              />
-              <label>Details</label>
-
-              <textarea
-                className="w-full px-3 h-36 text-gray-700 border rounded-lg focus:outline-none"
-                name="details"
-              ></textarea>
-              <div>
-                <label
-                  htmlFor="image"
-                  className="block text-sm text-gray-500 dark:text-gray-300"
-                >
-                  Image
-                </label>
-
-                <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  accept="image/*"
-                  className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200  placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600  dark:focus:border-blue-300"
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Select Status</label>
+            <select name="status" className="w-full rounded-xl border border-gray-200 p-3 text-base shadow-sm focus:ring-2 focus:ring-blue-200 focus:outline-none transition">
+              <option value="available">Available</option>
+              <option value="upcoming">Upcoming</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Service Name</label>
+            <input
+              autoFocus
+              required
+              className="w-full rounded-xl border border-gray-200 p-3 text-base shadow-sm focus:ring-2 focus:ring-blue-200 focus:outline-none transition"
+              placeholder="Service Name"
+              type="text"
+              name="name"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+            <input
+              required
+              type="number"
+              className="w-full rounded-xl border border-gray-200 p-3 text-base shadow-sm focus:ring-2 focus:ring-blue-200 focus:outline-none transition"
+              placeholder="Price"
+              name="price"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Details</label>
+            <textarea
+              className="w-full px-3 h-36 text-gray-700 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-200"
+              name="details"
+              placeholder="Describe the service..."
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">Image</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="block w-full px-3 py-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-xl file:bg-blue-100 file:text-blue-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full"
+              onChange={e => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = () => setImageUrl(reader.result as string);
+                  reader.readAsDataURL(file);
+                } else {
+                  setImageUrl(undefined);
+                }
+              }}
+            />
+            {imageUrl && (
+              <div className="flex justify-center mt-4">
+                <img
+                  src={imageUrl}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded-xl border border-blue-200 shadow-md"
                 />
               </div>
-            </div>
-
-            <div className="flex justify-center text-center mt-10">
-              <Button
-                htmlType="submit"
-                type="primary"
-                // className="rounded-lg bg-blue-500  text-sm font-medium text-white cursor-pointer
-                value="large"
-                size="large"
-              >
-                Submit
-              </Button>
-            </div>
-          </form>
-        </div>
+            )}
+          </div>
+          <div className="flex justify-center mt-8">
+            <Button
+              htmlType="submit"
+              type="primary"
+              size="large"
+              className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-10 py-3 text-base font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-200 border-0"
+            >
+              Submit
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );

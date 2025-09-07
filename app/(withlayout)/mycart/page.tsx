@@ -118,13 +118,17 @@ const MyCart = () => {
           </section>
         </>
       ) : (
-        <div className="text-center mt-36">
-          <h1 >
-            No services in your cart <ShoppingCartOutlined />
-          </h1>
-          <p className="text-xl">Add one <Link href={'/allservices'}>
-          <ArrowRightOutlined className="text-blue-500"/>
-          </Link></p>
+        <div className="flex flex-col items-center justify-center min-h-[40vh]">
+          <div className="bg-white/90 shadow-xl rounded-3xl px-10 py-12 flex flex-col items-center border border-blue-100">
+            <ShoppingCartOutlined className="text-6xl text-blue-400 mb-4" />
+            <h1 className="text-2xl font-bold text-gray-700 mb-2">No services in your cart</h1>
+            <p className="text-lg text-gray-500 mb-6">Looks like you haven't added any services yet.</p>
+            <Link href={'/allservices'}>
+              <Button type="primary" size="large" className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-2 text-base font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-200 border-0 flex items-center gap-2">
+                Add Services <ArrowRightOutlined />
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

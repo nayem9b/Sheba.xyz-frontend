@@ -54,7 +54,7 @@ const AddCategorypage = () => {
         if (imgData) {
           const categorySendData = {
             title: categoryName,
-            image: imgData.data.url,
+            image: imgData?.data?.url,
           };
 
           fetch(`http://localhost:3333/api/v1/categories`, {
