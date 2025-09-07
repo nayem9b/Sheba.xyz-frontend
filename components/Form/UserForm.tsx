@@ -1,81 +1,143 @@
 import { useUser } from "@clerk/nextjs";
-import { FormWrapper } from "./FormWrapper";
-
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import type { Dayjs } from "dayjs";
-import { DatePicker, Input, Space, TimePicker } from "antd";
+import { DatePicker, TimePicker, Input, Button } from "antd";
 import { setToLocalStorage } from "@/utils/local-storage";
-import type { DatePickerProps } from "antd";
-type UserData = {
+import { UserOutlined, PhoneOutlined, CalendarOutlined, ClockCircleOutlined, MailOutlined } from "@ant-design/icons";
+
+interface UserData {
   firstName: string;
   lastName: string;
   age: string;
-};
-
-type UserFormProps = UserData & {
-  updateFields: (fields: Partial<UserData>) => void;
-};
-
-const onChange = (time: Dayjs | unknown, timeString: string) => {
-  console.log(time, timeString);
-  setToLocalStorage("time", time as string);
-};
-
-const onDateChange: DatePickerProps["onChange"] = (
-  date: any,
-  dateString: any
-) => {
-  setToLocalStorage("date", dateString as string);
-  console.log(dateString);
-};
-export function UserForm({
-  firstName,
-  lastName,
-  age,
-  updateFields,
-}: UserFormProps) {
-  const { isLoaded, isSignedIn, user } = useUser();
-  const { RangePicker } = DatePicker;
-  return (
-    <FormWrapper title="User Details">
-      <label className="text-white text-xl ml-10 mt-3">Email</label>
-      {/* <Input placeholder={user?.primaryEmailAddress?.emailAddress} /> */}
-      <input
-        autoFocus
-        required
-        disabled
-        className="w-80 rounded-lg text-lg border-gray-200 p-3  shadow-sm"
-        placeholder={user?.primaryEmailAddress?.emailAddress}
-        type="text"
-        value={user?.primaryEmailAddress?.emailAddress}
-        name="email"
-      />
-      <label className="text-white text-xl ml-10 mt-3">Full Name</label>
-      <input
-        required
-        type="text"
-        className="w-80 text-lg rounded-lg border-gray-200 p-3 pe-12 shadow-sm"
-        placeholder="Full Name"
-        name="fullName"
-      />
-      <label className="text-white text-xl ml-10 mt-3">Contact Number</label>
-      <input
-        required
-        type="number"
-        className="w-80 rounded-lg text-lg border-gray-200 p-3 pe-12 shadow-sm"
-        placeholder="Contact Number"
-        name="contactNo"
-      />
-
-      <label className="text-white text-xl ml-10 py-2">Date & Time</label>
-      <div className="flex">
-        <DatePicker onChange={onDateChange} className="w-36" />
-        <TimePicker
-          use12Hours
-          format="h:mm:ss A"
-          onChange={onChange}
-          className="w-40 ml-4"
-        />
-      </div>
-    </FormWrapper>
-  );
+  [key: string]: any;
 }
+
+interface UserFormProps extends UserData {
+  updateFields: (fields: Partial<UserData>) => void;
+}
+
+const formatDate = (date: Dayjs | null) => {
+  return date ? date.format('YYYY-MM-DD') : '';
+};
+
+const formatTime = (time: Dayjs | null) => {
+  return time ? time.format('h:mm A') : '';
+};
+const UserForm = ({ updateFields, ...formData }: UserFormProps) => {
+  const { user } = useUser();
+  const [formState, setFormState] = useState({
+    date: null as Dayjs | null,
+    time: null as Dayjs | null,
+  });
+
+  const handleChange = (field: string, value: any) => {
+    updateFields({ [field]: value });
+  };
+
+  const handleDateChange = (date: Dayjs | null) => {
+    setFormState(prev => ({ ...prev, date }));
+    setToLocalStorage('date', formatDate(date));
+  };
+
+  const handleTimeChange = (time: Dayjs | null) => {
+    setFormState(prev => ({ ...prev, time }));
+    setToLocalStorage('time', formatTime(time));
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-8 bg-white rounded-2xl shadow-sm border border-gray-100">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-8"
+      >
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Personal Information</h2>
+          <p className="text-gray-500">Please fill in your details to continue</p>
+        </div>
+
+        <div className="space-y-6">
+          {/* Email */}
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-gray-700">Email</label>
+            <Input
+              size="large"
+              value={user?.primaryEmailAddress?.emailAddress || ''}
+              disabled
+              className="w-full h-12 rounded-lg"
+              prefix={<MailOutlined className="text-gray-400" />}
+            />
+          </div>
+
+          {/* Full Name */}
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-gray-700">Full Name</label>
+            <Input
+              size="large"
+              placeholder="John Doe"
+              className="w-full h-12 rounded-lg"
+              prefix={<UserOutlined className="text-gray-400" />}
+              onChange={(e) => handleChange('fullName', e.target.value)}
+              value={formData.fullName || ''}
+            />
+          </div>
+
+          {/* Contact Number */}
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-gray-700">Contact Number</label>
+            <Input
+              size="large"
+              placeholder="+1 (555) 000-0000"
+              className="w-full h-12 rounded-lg"
+              prefix={<PhoneOutlined className="text-gray-400" />}
+              onChange={(e) => handleChange('contactNo', e.target.value)}
+              value={formData.contactNo || ''}
+            />
+          </div>
+
+          {/* Date & Time */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">Date</label>
+              <DatePicker
+                size="large"
+                className="w-full h-12 rounded-lg"
+                placeholder="Select date"
+                value={formState.date}
+                onChange={handleDateChange}
+                format="MMM DD, YYYY"
+                suffixIcon={<CalendarOutlined className="text-gray-400" />}
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-gray-700">Time</label>
+              <TimePicker
+                size="large"
+                className="w-full h-12 rounded-lg"
+                placeholder="Select time"
+                value={formState.time}
+                onChange={handleTimeChange}
+                format="h:mm A"
+                use12Hours
+                suffixIcon={<ClockCircleOutlined className="text-gray-400" />}
+              />
+            </div>
+          </div>
+        </div>
+
+        <Button
+          type="primary"
+          size="large"
+          className="w-full h-12 bg-blue-600 hover:bg-blue-700 transition-colors rounded-lg font-medium"
+          onClick={() => console.log('Form submitted')}
+        >
+          Continue
+        </Button>
+      </motion.div>
+    </div>
+  );
+};
+
+export default UserForm;

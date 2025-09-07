@@ -4,12 +4,13 @@ import {
   useCartItemsByUserIdQuery,
   useDeleteCartMutation,
 } from "@/redux/api/cartApi";
-import { ArrowRightOutlined, DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined, DeleteOutlined, ShoppingCartOutlined, TagOutlined } from "@ant-design/icons";
 import { useUser } from "@clerk/nextjs";
-import { Button, Input, Space, message } from "antd";
+import { Button, Input, Space, message, Divider, Badge } from "antd";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeIn, staggerContainer } from "../../../utils/motion";
 
 const MyCart = () => {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -33,103 +34,188 @@ const MyCart = () => {
     const res = await deleteCart(id);
     window.location.reload();
   };
+  const calculateTotal = () => {
+    return CartItems?.reduce((total: number, item: any) => {
+      return total + (parseFloat(item?.service?.price) || 0);
+    }, 0).toFixed(2);
+  };
+
   return (
-    <div>
-      {CartItems?.length > 0 ? (
-        <>
-          {" "}
-          <section>
-            <div className=" px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-              <div className=" ">
-                <header className="text-center">
-                  <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                    My Cart
-                  </h1>
-                </header>
+    <div className="min-h-screen bg-gray-50">
+      {/* <AnimatePresence> */}
+        {CartItems?.length > 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="container mx-auto px-4 py-12"
+          >
+            <motion.header 
+              className="text-center mb-12"
+              variants={fadeIn('up', 'spring', 0.2, 0.75)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <h1 className="text-4xl font-bold text-gray-800 mb-2">Your Shopping Cart</h1>
+              <p className="text-gray-500">Review and manage your selected services</p>
+            </motion.header>
 
-                <div className="mt-8">
-                  <ul className="space-y-10">
-                    {CartItems?.map((item: any) => (
-                      <>
-                        <li className="flex gap-4">
-                          <img
-                            src={item?.service?.image}
-                            alt=""
-                            className="h-52 w-52 rounded-3xl object-cover"
-                          />
-
+            <motion.div 
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+              variants={staggerContainer(0.1, 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <div className="lg:col-span-2 space-y-6">
+                {CartItems?.map((item: any, index: number) => (
+                  <motion.div
+                    key={item.id}
+                    variants={fadeIn('right', 'spring', index * 0.1, 0.75)}
+                    className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100"
+                  >
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/4 h-48 md:h-auto">
+                        <img
+                          src={item?.service?.image || '/placeholder-service.jpg'}
+                          alt={item?.service?.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      <div className="p-6 flex-1">
+                        <div className="flex justify-between items-start">
                           <div>
-                            <h3 className="text-3xl text-gray-900">
+                            <h3 className="text-xl font-semibold text-gray-800 mb-1">
                               {item?.service?.name}
                             </h3>
-
-                            <dl className="mt-0.5 space-y-px text-xl text-gray-600">
-                              <div className="text-xl font-bold">
-                                <dt className="inline ">Price:</dt>
-                                <dd className="inline">
-                                  {item?.service?.price} ₹
-                                </dd>
-                              </div>
-                              <div>
-                                <dt className="inline">Rating:</dt>
-                                <dd className="inline">
-                                  {item?.service?.rating}
-                                </dd>
-                              </div>
-                              <div>
-                                <dt className="inline">
-                                  Location : {item?.service?.location}
-                                </dt>
-                              </div>
-                            </dl>
-                          </div>
-
-                          <div className="flex flex-1 items-center justify-end gap-2">
-                            <div className="mr-16 flex gap-4">
-                              <Button
-                                className="text-gray-600 transition hover:text-red-600 h-12 "
-                                onClick={() => {
-                                  handleRemoveFromCart(item?.id);
-                                }}
-                                danger
-                              >
-                                <DeleteOutlined />
-                              </Button>
-                              <Link href={`/purchase/${item?.service?.id}`}>
-                                <Button type="primary" className="h-12">
-                                  Book Service
-                                </Button>
-                              </Link>
+                            <div className="flex items-center text-amber-500 mb-3">
+                              {'★'.repeat(Math.round(item?.service?.rating || 0))}
+                              {'☆'.repeat(5 - Math.round(item?.service?.rating || 0))}
+                              <span className="text-gray-500 text-sm ml-2">
+                                ({item?.service?.rating || 'No ratings'})
+                              </span>
                             </div>
-                            <Space.Compact className="w-96 h-12">
-                              <Input placeholder="Promo Code" />
-                              <Button type="primary" className="h-12">
-                                Submit
-                              </Button>
-                            </Space.Compact>
+                            <p className="text-gray-500 mb-4 flex items-center">
+                              <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              {item?.service?.location || 'Location not specified'}
+                            </p>
                           </div>
-                        </li>
-                      </>
-                    ))}
-                  </ul>
-                </div>
+                          
+                          <div className="text-right">
+                            <span className="text-2xl font-bold text-blue-600">
+                              ₹{parseFloat(item?.service?.price || 0).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-gray-100">
+                          <Button
+                            onClick={() => handleRemoveFromCart(item?.id)}
+                            icon={<DeleteOutlined />}
+                            className="flex items-center text-gray-600 hover:bg-red-50 hover:text-red-500 transition-colors"
+                            size="large"
+                          >
+                            Remove
+                          </Button>
+                          <Link href={`/purchase/${item?.service?.id}`} className="flex-1">
+                            <Button 
+                              type="primary" 
+                              className="w-full h-10 bg-blue-600 hover:bg-blue-700 transition-colors"
+                              size="large"
+                            >
+                              Book Now
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </div>
-          </section>
-        </>
+
+              {/* Order Summary */}
+              <motion.div 
+                variants={fadeIn('left', 'spring', 0.4, 0.75)}
+                className="h-fit bg-white rounded-2xl shadow-sm p-6 border border-gray-100"
+              >
+                <h2 className="text-xl font-semibold text-gray-800 mb-6">Order Summary</h2>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Subtotal</span>
+                    <span className="font-medium">₹{calculateTotal()}</span>
+                  </div>
+                  
+                  <div className="flex items-center">
+                    <Input 
+                      placeholder="Promo code" 
+                      prefix={<TagOutlined className="text-gray-400" />}
+                      className="flex-1"
+                    />
+                    <Button type="primary" className="ml-2">
+                      Apply
+                    </Button>
+                  </div>
+                  
+                  <Divider className="my-4" />
+                  
+                  <div className="flex justify-between text-lg font-semibold">
+                    <span>Total</span>
+                    <span className="text-blue-600">₹{calculateTotal()}</span>
+                  </div>
+                </div>
+                
+                <Button 
+                  type="primary" 
+                  size="large" 
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-0 h-12 text-base font-medium"
+                >
+                  Proceed to Checkout
+                </Button>
+                
+                <div className="mt-4 text-center text-sm text-gray-500">
+                  <p>or <Link href="/allservices" className="text-blue-500 hover:underline">Continue Shopping</Link></p>
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-[40vh]">
-          <div className="bg-white/90 shadow-xl rounded-3xl px-10 py-12 flex flex-col items-center border border-blue-100">
-            <ShoppingCartOutlined className="text-6xl text-blue-400 mb-4" />
-            <h1 className="text-2xl font-bold text-gray-700 mb-2">No services in your cart</h1>
-            <p className="text-lg text-gray-500 mb-6">Looks like you haven't added any services yet.</p>
-            <Link href={'/allservices'}>
-              <Button type="primary" size="large" className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-2 text-base font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-200 border-0 flex items-center gap-2">
-                Add Services <ArrowRightOutlined />
-              </Button>
+        <motion.div 
+          className="flex flex-col items-center justify-center min-h-[60vh] px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="bg-white shadow-xl rounded-3xl px-8 py-12 flex flex-col items-center border border-gray-100 max-w-md w-full">
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <ShoppingCartOutlined className="text-6xl text-blue-400 mb-6" />
+            </motion.div>
+            <h1 className="text-2xl font-bold text-gray-800 mb-3 text-center">Your cart is empty</h1>
+            <p className="text-gray-500 text-center mb-8 max-w-xs">Looks like you havent added any services to your cart yet.</p>
+            <Link href={'/allservices'} className="w-full max-w-xs">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button 
+                  type="primary" 
+                  size="large" 
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 border-0 h-12 text-base font-medium shadow-md"
+                >
+                  Browse Services <ArrowRightOutlined className="ml-2" />
+                </Button>
+              </motion.div>
             </Link>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
